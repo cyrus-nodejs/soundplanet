@@ -1,51 +1,57 @@
-# React + TypeScript + Vite
+# Music Streaming App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MERN Music App: A Seamless Streaming Experience Powered by the MERN Stack, Redux, Bootstrap , Stripe Payment API, Cloudinary
 
-Currently, two official plugins are available:
+MERN Music App is a full-stack application designed to transform your online music streaming experience. Built with the MERN stack (MongoDB, Express.js, React, Node.js), it leverages Redux for efficient state management and Boostrap UI for a sleek, user-friendly interface. This project offers a robust platform for both users and admins, packed with essential features for a seamless experience.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Music App-homepage
 
-## Expanding the ESLint configuration
+ecommerce-banner
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Features
+User:
 
-- Configure the top-level `parserOptions` property like this:
+:
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Make Subscription and view order history.
+Profile Management:
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Manage email, username, and multiple addresses.
+Shopping Cart:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Add tracks,
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# soundplanet
+Payment:
+Make Payment with Cards, Bank Transfer, Wallets
+Retrieve Payment
+
+Admin:
+Product Management:
+
+Add, edit, delete, and soft-delete products.
+Manage product attributes like name and stock.
+Order Management:
+
+View and update order details and status.
+Security & User Experience:
+Secure Authentication:
+
+Login, signup, Socail login, password reset, and logout.
+Intuitive Interface:
+
+Powered by Bootstrap for a visually appealing and user-friendly experience.
+Scalability:
+Built for Growth:
+Scalable architecture to handle increasing user demands.
+Project Setup
+Prerequisites
+Node.js ( version v21.1.0 or later )
+MongoDB installed and running locally
+Clone the project
+git clone https://github.com/cyrus-nodejs/soundplanet
+
+Bonus
+Don't forget to star the repository and share your feedback!✨
+
+Authors
+@cyrus
