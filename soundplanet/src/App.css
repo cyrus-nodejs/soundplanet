@@ -65,7 +65,6 @@ color:azure;
   background: var(--submain);
   margin: 4px, 4px;
   padding: 4px;
-  height: 700px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
@@ -87,7 +86,9 @@ color:azure;
 }
 .mainCenter{
   background: var(--submain);
-  height: 700px;
+  margin: 4px, 4px;
+  padding: 4px;
+   height: 500px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;

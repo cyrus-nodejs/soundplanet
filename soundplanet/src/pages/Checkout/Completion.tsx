@@ -16,7 +16,7 @@ function Completion() {
 
   const [ messageBody, setMessageBody ] = useState(null);
   const [ message, setMessage ] = useState(null);
-
+  const BASEURL = import.meta.env.VITE_APP_BASE_URL
  const [paymentIntent, setPaymentIntent] = useState("")
  const dispatch = useAppDispatch()
  const stripePromise  = useAppSelector(getStripePromise)
@@ -43,7 +43,7 @@ console.log(stripePromise)
   const confirmPayment = async () => {
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/confirmpayment",
+        `${BASEURL }/confirmpayment`,
         {
        paymentIntent,
         },

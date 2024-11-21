@@ -1,11 +1,7 @@
 
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import Container from 'react-bootstrap/Container';
- 
-import Button from 'react-bootstrap/Button';
-
-import Form from 'react-bootstrap/Form';
+import { Container, Button, Form } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../redux/app/hook';
 import { useState } from 'react';

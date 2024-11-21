@@ -15,13 +15,20 @@ const isAuthenticated = useAppSelector(getIsAuthenticated)
 const searchTerm = useAppSelector(getSearchTerm)
 
   return (
-    <div  className="col-7 mt-3 pb-5 homeCenter    text-light ">
-      {!searchTerm ? (<div>
+    <div  className="col-7 pb-5   mt-3 rounded  homeRight   text-light ">
+      {!searchTerm ? (<div className="pb-5">
         <Artists />
 <Genres />
 {user && isAuthenticated &&   <RecentlyPlayed/> }
  <Newtrack /> 
 <Topten />
+<Artists />
+<Genres />
+{user && isAuthenticated &&   <RecentlyPlayed/> }
+ <Newtrack /> 
+<Topten />
+
+
     </div>
       ) : 
       (<div>
