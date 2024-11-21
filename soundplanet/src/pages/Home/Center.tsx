@@ -22,11 +22,6 @@ const searchTerm = useAppSelector(getSearchTerm)
 {user && isAuthenticated &&   <RecentlyPlayed/> }
  <Newtrack /> 
 <Topten />
-<Artists />
-<Genres />
-{user && isAuthenticated &&   <RecentlyPlayed/> }
- <Newtrack /> 
-<Topten />
 
 
     </div>
