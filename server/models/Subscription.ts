@@ -34,7 +34,6 @@ const SubscriptionSchema = new Schema({
     duration:{
         type: Number,
         default:30,
-        
     },
  
     daysremaining:{

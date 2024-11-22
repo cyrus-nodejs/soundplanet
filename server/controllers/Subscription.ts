@@ -60,16 +60,9 @@ if (order){
             package:order.package,
             subdate:new Date(),
             expireAt:expirytime,
+            daysremaining:daysRemaining(expirytime, new Date())
         });
-        const getSub = await Subscription.findOne({owner:owner, paymentid:paymentIntent.id})
-        const expiry = getSub.expireAt
-        const subday = getSub.subdate
-         getSub.daysremaining = daysRemaining(expiry, subday)
-        console.log(expiry)
-        console.log(subday)
-        getSub.save()
-   
-         console.log(order)
+       
         res.json({success:true, message:"Payment Success!"})
        }
         
