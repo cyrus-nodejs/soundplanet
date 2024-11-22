@@ -16,14 +16,12 @@ import { CookiesProvider } from 'react-cookie';
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <AudioPlayerProvider>
-  
       <Provider store={store}>
       <FacebookProvider appId={import.meta.env.VITE_APP_FACEBOOK_CLIENT_ID}>
       <GoogleOAuthProvider clientId={import.meta.env.VITE_APP_GOOGLE_CLIENT_ID}>
       <CookiesProvider defaultSetOptions={{ path: '/' }}>
     <App />
     </CookiesProvider>
-
     </GoogleOAuthProvider>
   </FacebookProvider>
     </Provider>

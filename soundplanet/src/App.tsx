@@ -208,7 +208,7 @@ console.log(currentTrack)
 
   return (
   
-    < div onContextMenu={handleContextMenu}  className="appdiv">
+    < div onContextMenu={handleContextMenu}  className="">
   <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
       <RouterProvider router={router}  />

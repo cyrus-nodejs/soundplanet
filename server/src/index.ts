@@ -39,25 +39,31 @@ app.use(express.urlencoded({ extended: true }));
  app.use(bodyParser.json({ limit: "100mb"}));
  app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
 
- const corsOptions = {
-  origin: 'https://soundplanet.netlify.app',//(https://your-client-app.com)
-  optionsSuccessStatus: 200,
-  credentials:true,
-};
+ 
+
+
+const corsOptions = {
+  origin: process.env!.FRONTEND_URL,
+  credentials: true, 
+  optionSuccessStatus: 200,
+  Headers: true,
+  exposedHeaders: 'Set-Cookie',
+  methods: ['GET', 'PUT', 'POST', 'DELETE'],
+  allowedHeaders: [
+    'Access-Control-Allow-Origin',
+    'Content-Type',
+    'Authorization'
+  ]
+}
+const cookieParams = {maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true };
 
 app.use(cors(corsOptions))
-
-
  app.use(
 	session({
     name:process.env.SESSION_NAME!,
 		secret:process.env.SESSION_SECRET!, //pick a random string to make the hash that is generated secure
 		store: MongoStore.create({mongoUrl:process.env.MONGO_URL }),
-     cookie: {
-      maxAge: 24 * 60 * 60 * 1000,
-    secure: true,
-    sameSite: "none",
-    },
+     cookie: cookieParams,
 		saveUninitialized: false ,//required
     resave: false, //required
    
