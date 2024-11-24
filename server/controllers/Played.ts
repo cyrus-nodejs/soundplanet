@@ -1,5 +1,5 @@
 
-import { User } from "../src/types/custom"
+
 import { Song } from "../models/Song"
 import { Played } from "../models/Played"
 export  const addPlayedSongs = async (req:any, res:any ) => {

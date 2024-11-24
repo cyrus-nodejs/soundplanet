@@ -207,7 +207,7 @@ console.log(currentTrack)
 
 
   return (
-  
+  <section className="d-none d-lg-block ">
     < div onContextMenu={handleContextMenu}  className="">
   <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
@@ -217,7 +217,7 @@ console.log(currentTrack)
     
 
     </div>
-   
+   </section>
   )
 }
 
