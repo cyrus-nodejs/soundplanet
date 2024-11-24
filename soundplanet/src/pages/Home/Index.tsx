@@ -10,12 +10,13 @@ const Index = () => {
   return (
   <Container fluid className="">
 <NavIndex />
-    <div className="row mt-5 index">
+    <div className="row mt-5 ">
         <HomeLeft />
       <Center />  
         <HomeRight />
+        <Audioplayer />
 </div>
-<Audioplayer />
+
   </Container>
   )
 }

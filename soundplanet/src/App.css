@@ -421,3 +421,17 @@ input[type='range']:active::-moz-range-thumb {
   background: #04AA6D;
   cursor: pointer;
 }
+
+
+@media only screen and (min-width: 992px) {
+
+  .homeRight{
+    background:var(--submain);
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+}
