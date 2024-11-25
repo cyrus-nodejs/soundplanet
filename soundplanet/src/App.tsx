@@ -208,12 +208,7 @@ console.log(currentTrack)
 
   return (
   <section >
-    
-    <div className="">
-      <p className="fs-4 text-black">Streaming  Only on computer or  Large devices</p>
-    </div>  
-    
-    < div onContextMenu={handleContextMenu}  className="d-none d-lg-block ">
+    < div onContextMenu={handleContextMenu}  >
   <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
       <RouterProvider router={router}  />
