@@ -9,36 +9,35 @@ Music App-homepage
 ecommerce-banner
 
 Features
-User:
+USER
 
-:
+Orders:
+Subscription (30 days)
+View Orders
 
-Make Subscription and view order history.
-Profile Management:
-
-Manage email, username, and multiple addresses.
-Shopping Cart:
-
-Add tracks,
+Playlist:
+Create, Update, Delete, Addto, Removefrom playlist.
 
 Payment:
-Make Payment with Cards, Bank Transfer, Wallets
+Bank Cards, Ewallets, Bank transfer
+Make Payment 
+Validate Payment
 Retrieve Payment
 
-Admin:
-Product Management:
-
+ADMIN
+Product Management
 Add, edit, delete, and soft-delete products.
 Manage product attributes like name and stock.
-Order Management:
 
-View and update order details and status.
 Security & User Experience:
 Secure Authentication:
+Email & password Login
+Socail Login
+Signup
+Password Reset, 
+Logout
 
-Login, signup, Socail login, password reset, and logout.
-Intuitive Interface:
-
+INTERFACE:
 Powered by Bootstrap for a visually appealing and user-friendly experience.
 Scalability:
 Built for Growth:
