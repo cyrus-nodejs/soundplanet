@@ -14,9 +14,9 @@ const Index = () => {
         <HomeLeft />
       <Center />  
         <HomeRight />
-        <Audioplayer />
+        
 </div>
-
+<Audioplayer />
   </Container>
   )
 }

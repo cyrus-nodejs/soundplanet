@@ -23,7 +23,7 @@ const AllArtists = () => {
     <NavIndex />
         <div className="row mt-5">
             <HomeLeft />
-            <Row  className='mx-1 my-2 homeCenter  col-7' >
+            <Row  className='mx-1 my-2 homeCenter  col' >
      {searchterm ? (< NavSearchResults />) : (  
           <div>
            <div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Artists</div>

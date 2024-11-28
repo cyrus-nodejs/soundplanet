@@ -48,9 +48,9 @@ const Artistdetails = () => {
   return (
     <Container fluid>
     <NavIndex />
-        <div className="row  mt-5">
+        <div className="row homeRight  mt-5">
             <HomeLeft />
-            <Row  className='mt-3 py-3 artistbg mx-1 my-2 homeCenter  col-7' >
+            <Row  className='mt-3 py-3 artistbg mx-1 my-2 homeCenter  col' >
         {searchterm ? (<NavSearchResults />) : (  <div>
            
            <div className="artistbg" >

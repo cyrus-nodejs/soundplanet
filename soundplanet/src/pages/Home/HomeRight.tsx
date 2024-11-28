@@ -20,7 +20,7 @@ const currentTrack = useAppSelector(getCurrentTrack)
   // const menuItems = [...new Set(Tracks.filter((Val) => Val.artist === artist))];
   return (
 
-    <div className="col-2  mt-3 rounded ms-1 homeRight p-3  text-light ">
+    <div className="col-2 d-none d-lg-block mt-3 rounded ms-1 homeRight p-3  text-light ">
         <Row>
         <div className="d-flex mb-3">
     <div className="p-2">Chill Mixs</div>

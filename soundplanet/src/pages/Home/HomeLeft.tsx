@@ -97,7 +97,7 @@ const formik = useFormik({
   return (
 
     
-    <div  className="mt-3 homeleft col me-1 rounded  position-relative  text-light ">
+    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1 rounded  position-relative  text-light ">
     
 
     <div className="d-flex mb-3">

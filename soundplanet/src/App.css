@@ -26,7 +26,9 @@ body{
 color:azure;
 }
 
-
+.bgcolor{
+  background-color:var(--submain) 
+}
 .card-header{
   background-color:var(--submain)  
 }
@@ -62,14 +64,24 @@ color:azure;
 }
 
 .homeCenter{
-  background: var(--submain);
+  background:var(--submain);
   margin: 4px, 4px;
   padding: 4px;
+   height:100%;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
 }
 
+.homeRight{
+  background:var(--submain);
+  margin: 4px, 4px;
+  padding: 4px;
+   height:100% ;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+}
 .facebook{
   width: 100%;
   height:45px;
@@ -94,15 +106,7 @@ color:azure;
   text-align: justify;
 }
 
-.homeRight{
-  background:var(--submain);
-  margin: 4px, 4px;
-  padding: 4px;
-  height: 500px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align: justify;
-}
+
 .--range-progress{
 background-color: black ;
 color: black;

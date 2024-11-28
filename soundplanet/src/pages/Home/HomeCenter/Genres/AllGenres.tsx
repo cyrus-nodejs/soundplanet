@@ -21,7 +21,7 @@ const AllGenres = () => {
     <NavIndex />
         <div className="row mt-5">
             <HomeLeft />
-            <Row  className='m-1 mt-3 homeCenter   col-7' >
+            <Row  className='m-1 mt-3 homeCenter   col' >
         {searchterm ? (<NavSearchResults />) : (<div>
            <div className="d-inline-flex my-3 text-light fs-4 border-info position-sticky border-bottom">GENRES</div>
         

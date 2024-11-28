@@ -53,7 +53,7 @@ const AllTopTen = () => {
     <NavIndex />
         <div className="row mt-5">
             <HomeLeft />
-            <Row  className='mx-1 my-2 homeCenter  col-7' >
+            <Row  className='mx-1 my-2 homeCenter  col' >
             
             {!searchterm ? (
           <div>
