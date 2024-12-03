@@ -166,7 +166,7 @@ const dispatch = useAppDispatch()
 
   
   return (
-    <Row className="pt-3">
+    <Row className="pt-3 ">
         <Col className="d-flex  justify-content-center">
         <div  onClick={() => dispatch(handleShuffle())}>
         <OverlayTrigger

@@ -24,7 +24,7 @@ const DisplayTrack = () => {
 }
  
   return (
-    <Row>
+    <Row className="">
        <Col>
        <audio 
        src={currentTrack?.songfile?.url }
@@ -34,8 +34,8 @@ const DisplayTrack = () => {
        >
        </audio>
        
-        <div  className="d-flex align-items-center ">
-  <div className=" flex-shrink-0">{currentTrack?.image ? (
+        <div  className="d-flex  align-items-center ">
+  <div className="d-none d-lg-block flex-shrink-0">{currentTrack?.image ? (
             <img className="rounded-circle mt-1" src={currentTrack?.image?.url} height="50" width="50" alt="audio avatar" />
           ) : (
             <div className="icon-wrapper">
@@ -44,7 +44,7 @@ const DisplayTrack = () => {
               </span>
             </div>
           )}</div>
-  <div className="flex-grow-1 ms-3"><div className="text-light fs-6 fw-normal">{currentTrack?.title}</div><div className="text-light fs-6 ">{currentTrack?.artistname}</div></div>
+  <div className="flex-grow-1 d-lg-block ms-3"><div className="text-light  fs-6 fw-normal">{currentTrack?.title}</div><div className="text-light fs-6 ">{currentTrack?.artistname}</div></div>
   
 </div>
        </Col> 

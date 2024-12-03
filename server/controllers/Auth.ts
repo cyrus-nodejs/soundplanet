@@ -63,6 +63,7 @@ export const Login = async (req:any, res:any ) => {
                            withCredentials: true,
                          secure: true,
                          sameSite: "none",
+                         httponly:"true",
                        });
                        console.log(req.user)
                        console.log(token)
@@ -171,6 +172,7 @@ export const ResetPassword = async (req:any, res:any  ) => {
                     res.json({success:false, message:err});
                 } else {
                    user.save()
+                   User.findOneAndDelete({token:token})
                     res.json({success:true, message:"Password reset successfull"})
                 }
             });

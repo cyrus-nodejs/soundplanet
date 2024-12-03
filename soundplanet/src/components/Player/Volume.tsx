@@ -20,7 +20,7 @@ const Volume = () => {
     
   return (
     <Row>
-        <Col className="d-flex align-items-stretch">
+        <Col className="d-flex align-items-stretch ">
         <div className="pt-3 flex-shrink-1" onClick={() => setMuteVolume((prev) => !prev)}>
           {mutevolume || volume < 5 ? (
             <OverlayTrigger

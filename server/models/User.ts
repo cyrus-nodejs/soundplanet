@@ -37,11 +37,7 @@ country:{
   
 },
 
-userid :{
-    type:String,
-    unique:true,
-},
-            token:{
+         token:{
                 type:String,
                 unique:true,
                 

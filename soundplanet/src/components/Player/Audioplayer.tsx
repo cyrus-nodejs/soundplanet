@@ -12,13 +12,13 @@ const Audioplayer = () => {
     return (
  
    
-  
-   <div className="d-flex audioplayer sticky-bottom ">
+  <section className="sticky-bottom d-none d-lg-block">
+   <div className="d-flex audioplayer   ">
   <div className="col-2 "><DisplayTrack  /></div>
   <div className=" col-8"><div className="text-start fs-6 fw-normal"><Control  /></div><div className="text-start fs-6 "><ProgressBarDiv  /></div></div>
   <div className="col-2 "><Volume  /></div>
 </div>
- 
+</section>
   )
 }
 

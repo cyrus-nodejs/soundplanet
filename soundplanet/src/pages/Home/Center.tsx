@@ -18,7 +18,7 @@ const searchTerm = useAppSelector(getSearchTerm)
 
   return (
     <div  className="col pb-5   mt-3 rounded  mt-3 rounded    homeRight   text-light ">
-      <Row>
+      <Row className="">
       {!searchTerm ? (<div className="pb-5">
         <Artists />
 <Genres />

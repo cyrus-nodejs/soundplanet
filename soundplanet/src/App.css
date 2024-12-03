@@ -17,6 +17,9 @@
   color: azure;
 }
 
+.maincolor{
+  background-color: var(--submain) ;
+}
 .menu{
   width: 15px;
 }
@@ -77,10 +80,14 @@ color:azure;
   background:var(--submain);
   margin: 4px, 4px;
   padding: 4px;
-   height:100% ;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
+}
+.scroll{
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100%;
 }
 .facebook{
   width: 100%;

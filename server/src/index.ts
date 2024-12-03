@@ -1,6 +1,6 @@
 
 import 'dotenv/config'
-import express from "express"
+import express, {Request, Response} from "express"
 import session from 'express-session'
 import MongoStore from 'connect-mongo'
 import helmet from "helmet";
@@ -58,6 +58,7 @@ const corsOptions = {
 const cookieParams = {maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true };
 
 app.use(cors(corsOptions))
+app.set('trust proxy', 1) 
  app.use(
 	session({
     name:process.env.SESSION_NAME!,
@@ -95,7 +96,7 @@ await connectDB(process.env.MONGO_URL);
 
 }
 
-app.get("/", (req, res)=>{
+app.get("/", (req:Request, res:Response)=>{
   res.sendFile(path.join(__dirname, '../../public/index.html'));
 })
 

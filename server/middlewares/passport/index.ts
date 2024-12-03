@@ -19,7 +19,7 @@ passport.use(new GoogleStrategy({
 
 
 },
-async function(accessToken, refreshToken, profile,  done) {
+async (accessToken, refreshToken, profile,  done) =>{
   //Check the DB to find a User with the profile.id
   try{
     let user = await User.findOne({userId: profile.id})
@@ -50,7 +50,7 @@ passport.use(new FacebookStrategy({
 
 },
 
-async function(accessToken, refreshToken, profile, done) {
+async (accessToken, refreshToken, profile, done) => {
   //Check the DB to find a User with the profile.id
   try{
     let user = await User.findOne({userId: profile.id})

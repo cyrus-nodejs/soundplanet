@@ -4,7 +4,7 @@ import Center from "./Center"
 import HomeLeft from "./HomeLeft"
 import HomeRight from "./HomeRight"
 import Audioplayer from "../../components/Player/Audioplayer"
-
+ import NavBottom from "../../components/NavBar/NavBottom"
 const Index = () => {
   
   return (
@@ -17,6 +17,7 @@ const Index = () => {
         
 </div>
 <Audioplayer />
+<NavBottom />
   </Container>
   )
 }
