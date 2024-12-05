@@ -3,7 +3,7 @@
 MERN Music App: A Seamless Streaming Experience Powered by the MERN Stack, Redux, Bootstrap , Stripe Payment API, Cloudinary
 
 MERN Music App is a full-stack application designed to transform your online music streaming experience. Built with the MERN stack (MongoDB, Express.js, React, Node.js), it leverages Redux for efficient state management and Boostrap UI for a sleek, user-friendly interface. This project offers a robust platform for both users and admins, packed with essential features for a seamless experience.
-
+Link => https://soundplanet.netlify.app
 Music App-homepage
 
 ecommerce-banner
