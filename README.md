@@ -4,7 +4,14 @@ Creating a Music App using the MERN stack (MongoDB, Express.js, React.js, and No
 
 ### **Music App Documentation**
 
+<<<<<<< HEAD
 #### **Project Overview**
+=======
+Link => https://soundplanet.netlify.app
+
+
+Music App-homepage
+>>>>>>> 0e4a250b062f657b2d29a737d7037e47a891f869
 
 This app is a Spotify-like music streaming service that will allow users to stream music, create playlists, search for songs, and interact with the music. The backend will handle user authentication, song data management, and music streaming. The frontend will offer an interactive and user-friendly interface similar to Spotify's web application.
 
