@@ -1,25 +1,45 @@
 
 
 /* @import "@radix-ui/colors/black-alpha.css";
-@import "@radix-ui/colors/mauve.css";
+/* @import "@radix-ui/colors/mauve.css";
 @import "@radix-ui/colors/violet.css"; */
-
-:root{
-
+/* ::root{
+  --contexify-menu-minWidth: 120px;
+   --main: rgba(20, 20, 20, 0.987);
+  --submain:  rgba(0,0,0,0.8435749299719888) 72%;
+   --contextmain: rgb(14, 9, 9); 
+  --progressmain:  rgba(7, 87, 50, 0.475); 
   box-sizing: border-box;
   --contexify-menu-minWidth: 120px;
-    --main: rgba(20, 20, 20, 0.987);
-    --submain:  rgba(0,0,0,0.8435749299719888) 72%;
-    /* --contextmain: rgb(14, 9, 9); */
-    --progressmain:  rgba(7, 87, 50, 0.475);
-    overflow: hidden;
+    --progressmain:  rgba(7, 87, 50, 0.475); 
     max-height: fit-content;
   color: azure;
-}
+  
+}  */
+
+*{
+  box-sizing: border-box;
+
+    max-height: fit-content;
+  color: azure;
+  /* background-color:rgba(0,0,0,0.8435749299719888) 72%; */
+  background: rgb(6,6,6);
+background: -moz-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+background: -webkit-linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+background: linear-gradient(0deg, rgba(6,6,6,1) 50%, rgba(5,1,1,0.700717787114846) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#060606",endColorstr="#050101",GradientType=1);
+} */
+
+
+
+
+
 
 .maincolor{
   background-color: var(--submain) ;
 }
+
+
 .menu{
   width: 15px;
 }
@@ -27,6 +47,7 @@
 body{
   background-color: var(--submain) ;
 color:azure;
+height: 100vh; 
 }
 
 .bgcolor{
@@ -47,6 +68,18 @@ color:azure;
   background-color:var(--main); 
   height:70px; 
 }
+
+.smContainer {
+  overflow-y:auto;
+  height:100vh;
+  overflow: hidden;
+}
+
+ .smcenter{
+  overflow-y:auto;
+  height:100vh;
+  overflow: hidden;
+} 
 .Navbar{
   background-color:var(--main) ;
   height:70px; 
@@ -58,19 +91,19 @@ color:azure;
 }
 .homeleft{
   background: var(--submain);
-  margin: 4px, 4px;
-  padding: 4px;
-
-  overflow-x: hidden;
-   overflow-y: hidden;
+  height: 100vh; 
   text-align: justify;
 }
 
 .homeCenter{
   background:var(--submain);
-  margin: 4px, 4px;
-  padding: 4px;
-   height:100%;
+  height: 100vh; 
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: justify;
+}
+.mainCenter{
+  background: var(--submain);
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
@@ -78,16 +111,22 @@ color:azure;
 
 .homeRight{
   background:var(--submain);
-  margin: 4px, 4px;
-  padding: 4px;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
+  height: 100vh; 
 }
+/* .smallHomeRight{
+  background:var(--submain);
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: justify;
+  height: 100vh; 
+} */
 .scroll{
   overflow-x: hidden;
   overflow-y: auto;
-  height: 100%;
+  height: 100vh; 
 }
 .facebook{
   width: 100%;
@@ -103,15 +142,6 @@ color:azure;
 .pricingbg{
   background: var(--submain);
 }
-.mainCenter{
-  background: var(--submain);
-  margin: 4px, 4px;
-  padding: 4px;
-   height: 700px;
-  overflow-x: hidden;
-  overflow-y: auto;
-  text-align: justify;
-}
 
 
 .--range-progress{
@@ -119,11 +149,22 @@ background-color: black ;
 color: black;
 }
 input::placeholder {
-  color: white;
+  color: rgba(0, 128, 23, 0.607);
   opacity: 0.5;
   border:none
 }
+.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 128, 23, 0.607);;
+  opacity: 1; /* Firefox */
+}
 
+.form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: rgba(0, 128, 23, 0.607);;
+}
+
+.form-control::-ms-input-placeholder { /* Microsoft Edge */
+  color: rgba(0, 128, 23, 0.607);;
+}
 .tooltip{
    background-color:var(--submain) ; 
 }
@@ -404,7 +445,7 @@ input[type='range']:active::-moz-range-thumb {
 }
 
 .volume {
-  -webkit-appearance: none;
+  
   width: 100%;
   height: 15px;
   border-radius: 5px;  
@@ -441,6 +482,18 @@ input[type='range']:active::-moz-range-thumb {
     margin: 4px, 4px;
     padding: 4px;
     height: 800px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .homeRight{
+    background:var(--submain);
+    margin: 4px, 4px;
+    padding: 4px;
+    height: 100%;
     overflow-x: hidden;
     overflow-y: auto;
     text-align: justify;

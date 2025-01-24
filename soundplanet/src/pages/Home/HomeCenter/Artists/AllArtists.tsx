@@ -19,9 +19,9 @@ const AllArtists = () => {
     console.log(artists)
   return (
     
-    <Container fluid>
+    <Container className="vh-100 overflow-hidden" fluid>
     <NavIndex />
-        <div className="row mt-5">
+        <div className="row vh-100  overflow-hidden homeRight  mt-5">
             <HomeLeft />
             <Row  className='mx-1 my-2 homeCenter  col' >
      {searchterm ? (< NavSearchResults />) : (  

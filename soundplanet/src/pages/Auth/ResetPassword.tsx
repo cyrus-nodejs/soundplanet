@@ -67,13 +67,13 @@ interface FormValues {
   return (
    
     <section>
-    <Container className="bg-dark" fluid>
+    <Container className="vh-100 pt-5  mainCenter" fluid>
    
-<center>
-<div   className="d-inline-flex px-5 mx-5">
-<div >
+
+<div   className="ms-auto my-5 me-auto">
+
          
-<p className="text-center text-dark fs-4 fw-normal">Reset your password.</p>           
+<p className="text-center text-dark fs-5 fw-normal">Reset your password.</p>           
   <p className="text-center text-dark fs-5 fw-normal">Reset your password.
   Last step. Enter your password, and you are set. Thanks!</p>
   <Form onSubmit={formik.handleSubmit}>
@@ -101,10 +101,10 @@ interface FormValues {
 
      
       
-</div>
 
 
-</center>
+
+
 </Container>
 
     </section>

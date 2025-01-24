@@ -7,22 +7,23 @@ import {
 } from "react-router-dom";
 import * as ContextMenu from "@radix-ui/react-context-menu";
 import './App.css'
+import AdminDashboard from './pages/Admin/AdminDasboard';
 import ResetPassword from "./pages/Auth/ResetPassword";
 import ForgotPassword from "./pages/Auth/ForgotPassword";
 import Report from "./pages/Report";
 import Completion from "./pages/Checkout/Completion";
 import CurrentOrder from "./pages/Orders/currentOrder";
 import ErrorPage from './pages/ErrorPage/Error';
-import AddSong from './pages/AddItem/AddSong';
+import AddSong from './pages/Admin/AddItem/AdminAddSong';
 import Payment from "./pages/Checkout/Payment";
 import AllArtists from './pages/Home/HomeCenter/Artists/AllArtists';
 import Index from "./pages/Home/Index";
 import Pricing from "./pages/Pricing/Pricing";
 import AllGenres from "./pages/Home/HomeCenter/Genres/AllGenres";
-import AddPricing from "./pages/AddItem/AddPricing";
+import AddPricing from "./pages/Admin/AddItem/AdminAddPricing";
 import Artistdetails from "./pages/Home/HomeCenter/Artists/Artistdetails";
-import AddArtist from "./pages/AddItem/AddArtist";
-import AddGenre from "./pages/AddItem/AddGenre";
+import AddArtist from "./pages/Admin/AddItem/AdminAddArtist";
+import AddGenre from "./pages/Admin/AddItem/AdminAddGenre";
 import Genredetails from "./pages/Home/HomeCenter/Genres/GenreDetails";
 import Register from "./pages/Auth/Register";
 import Login from "./pages/Auth/Login";
@@ -34,12 +35,12 @@ import Playlist from "./pages/Playlist/Playlist";
 
 import { useAppDispatch, useAppSelector } from "./redux/app/hook";
 import { useEffect } from "react";
-import { fetchAsyncUser, getUpdateUser,  } from "./redux/features/auth/authSlice";
+import { getAuthUser, fetchGoogleUser  } from "./redux/features/auth/authSlice";
 import { getCurrentTrack } from "./redux/features/audio/audioSlice";
 
 function App() {
    const dispatch = useAppDispatch()
-  const user = useAppSelector(getUpdateUser)
+  const user = useAppSelector(getAuthUser)
    const currentTrack = useAppSelector(getCurrentTrack)
 
   const handleContextMenu = (e: { preventDefault: () => void; }) => {
@@ -47,19 +48,21 @@ function App() {
     console.log("right click");
   };
 console.log(currentTrack)
+//   useEffect(() => {
+    
+//     dispatch(fetchAsyncUser());
+
+// }, [dispatch])
+  console.log(user)
+
   useEffect(() => {
     
-    dispatch(fetchAsyncUser());
+    dispatch(fetchGoogleUser());
 
 }, [dispatch])
   console.log(user)
 
-//   useEffect(() => {
-    
-//     dispatch(setCurrentTrack());
 
-// }, [dispatch])
-//   console.log(user)
   const router = createBrowserRouter([
     {
     path: "/",
@@ -103,6 +106,11 @@ console.log(currentTrack)
   {
     path: "/addpricing",
     element: <AddPricing />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "/admin/dashboard",
+    element: <AdminDashboard />,
     errorElement: <ErrorPage />
   },
 
@@ -207,8 +215,8 @@ console.log(currentTrack)
 
 
   return (
-  <section >
-    < div onContextMenu={handleContextMenu}  >
+  <section className='apphome' >
+    < div onContextMenu={handleContextMenu} className=""  >
   <ContextMenu.Root>
 			<ContextMenu.Trigger className="ContextMenuTrigger">
       <RouterProvider router={router}  />

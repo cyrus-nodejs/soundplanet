@@ -1,14 +1,14 @@
 
 import { useEffect, useState} from 'react';
-import axios from "axios";
+
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
-
-
+import { useAppDispatch } from '../../../src/redux/app/hook';
+import { fetchAddSong } from '../../../src/redux/features/admin/adminSlice';
 const AddSong = () => {
 
 
 
-
+const dispatch = useAppDispatch()
     const [state, setState] = useState({
      title:"",
        image:"",
@@ -93,11 +93,10 @@ setState({...state, [e.target.name] : e.target.value})
        
       
        
-    axios.post("http://localhost:3000/addsong",  
-  formData, {withCredentials:true} )
+  dispatch(fetchAddSong(formData))
     .then(response => {
-      alert(response.data.message)
-      alert(response.statusText)
+      alert(response)
+      alert(response)
       alert("Item saved successfully!")
     })
     .catch(err =>{

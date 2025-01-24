@@ -1,5 +1,5 @@
 
-import {  Link } from 'react-router-dom';
+// import {  Link } from 'react-router-dom';
 import { Button, Form, Container } from 'react-bootstrap';
 
 import {useState} from 'react';
@@ -24,7 +24,6 @@ interface FormValues {
   firstname: string;
   lastname: string;
   email: string;
-  username:string;
   password: string;
   confirmPassword: string;
 }
@@ -68,7 +67,6 @@ interface FormValues {
     initialValues: {
       firstname: '',
       lastname: '',
-      username:"",
       email: '',
       password: '',
       confirmPassword: '',
@@ -82,41 +80,41 @@ interface FormValues {
   return (
     
     <section className="  ">
-      <Container className=" pb-5 mainCenter" fluid>
-<Link to="/" className="p-2 navbar fs-3 text-decoration-none text-reset text-danger">SOUND PLANET</Link>
+      <Container className="vh-100 pt-5 mainCenter" fluid>
+{/* <Link to="/" className="p-2 navbar fs-3 text-decoration-none text-reset text-danger">SOUND PLANET</Link> */}
 
  <div className=" d-flex ">
- <div className="ms-auto my-5 me-auto">
+ <div className="ms-auto  me-auto">
 
                 
   <h4 className="text-success" style={{textAlign:"center"}}>Register an account</h4>
-  <Form onSubmit={formik.handleSubmit}>
-  <Form.Control size="lg"  required  onChange={formik.handleChange} value={formik.values.firstname} style={{}}  name="firstname"type="text"  placeholder="firstname" />
+  <Form className='text-light' onSubmit={formik.handleSubmit}>
+  <Form.Control className='text-light'  size="lg"  required  onChange={formik.handleChange} value={formik.values.firstname} style={{}}  name="firstname"type="text"  placeholder="Enter firstname" />
   {formik.touched.firstname && formik.errors.firstname && (
             <div className="error ">{formik.errors.firstname}</div>
           )}
       <br /> 
-      <Form.Control size="lg"  required onChange={formik.handleChange} value={formik.values.lastname}  style={{}}  name="lastname"   type="text"  placeholder="lastname" />
+      <Form.Control className='text-light' size="lg"  required onChange={formik.handleChange} value={formik.values.lastname}  style={{}}  name="lastname"   type="text"  placeholder="lastname" />
       {formik.touched.lastname && formik.errors.lastname && (
             <div className="error ">{formik.errors.lastname}</div>
           )}
       <br />
-      <Form.Control size="lg"  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="email"   type="email" placeholder="Email" />
+      <Form.Control className='text-light' size="lg"  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="email"   type="email" placeholder="Email" />
       {formik.touched.email && formik.errors.email && (
             <div className="error ">{formik.errors.email}</div>
           )}
       <br />
-      <Form.Control size="lg" hidden  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="Email" />
+      <Form.Control className='text-light' size="lg" hidden  required  value={formik.values.email} onChange={formik.handleChange} style={{}} name="username"   type="email" placeholder="Email" />
       {formik.touched.email && formik.errors.email && (
             <div className="error ">{formik.errors.email}</div>
           )}
       <br />
-      <Form.Control size="lg"  required   value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
+      <Form.Control className='text-light' size="lg"  required   value={formik.values.password}  onChange={formik.handleChange} style={{}} name="password"     type="password" placeholder="Password" />
       {formik.touched.password && formik.errors.password && (
             <div className="error">{formik.errors.password}</div>
           )}
       <br />
-       <Form.Control size="lg"  required   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
+       <Form.Control className='text-light' size="lg"  required   value={formik.values.confirmPassword}  onChange={formik.handleChange} style={{}} name="confirmPassword"     type="password" placeholder="Confirm Password" />
        {formik.touched.confirmPassword && formik.errors.confirmPassword && (
             <div className="error">{formik.errors.confirmPassword}</div>
           )}
@@ -129,9 +127,10 @@ interface FormValues {
      </div>
      </Form>
      <Stack direction="horizontal" gap={1}>
-      <div className="p-2 loginp"  > <p className="fs-6 "> Already registered?  <a href="/login" style={{color:'red', textDecoration:'none', }}>  Please sign in</a></p></div>
+      <div className="p-2 loginp"  > <p className="fs-6 "> Already registered? {message && (<span className="text-danger  fs-6 text-center">{message}</span> )}   <a href="/login" style={{color:'red', textDecoration:'none', }}>  Please sign in</a></p></div>
+      
     </Stack>
-    <p className="text-danger mt-2 fs-5 text-center">{message}</p>  
+
 </div>
 
 </div>

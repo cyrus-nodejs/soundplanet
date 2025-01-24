@@ -7,7 +7,7 @@ import {uploadToCloudinary } from "../utils/cloudinary"
 
 
 
-
+// Retrieve all songs from database
 export const  getSong = async (req:any, res:any ) => {
     
     try{
@@ -24,8 +24,9 @@ export const  getSong = async (req:any, res:any ) => {
 
 }
 
+//Save songs to databse
 
- export  const postSong = async  (req:any, res:any ) => {
+ export  const addSong = async  (req:any, res:any ) => {
 
     // const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 const {title, artistname, genre, duration,  status, biography, album,  topten,  year } = req.body
@@ -75,7 +76,7 @@ const newItemData = {title, artistname, duration, genre, status, album, songfile
   
 
  
-
+// Retrieve TopTen songs from databse
 
    export  const topTen = async (req:any, res:any ) => {
 
@@ -94,7 +95,8 @@ const newItemData = {title, artistname, duration, genre, status, album, songfile
 //         }
   
 
-        
+        // Search songs from databse
+
         export const  Search = async (req:any, res:any ) => {
           const searchitem = req.query.q
           try{
@@ -114,4 +116,39 @@ const newItemData = {title, artistname, duration, genre, status, album, songfile
       }
       
 
-      
+      //Remove selected item fro database
+export const deleteSong = async (req:any, res:any ) => {
+ 
+  const {itemId}= req.body
+try{
+  let item = await Song.findOne({_id:itemId});
+  if (item){
+    await Song.findOneAndDelete({_id:itemId});
+    res.json({ success: true, message: "Item removed from database" });
+  }else{
+    res.json({ success: true, message: "No cart exists!" });
+  }
+
+}catch (error) {
+ console.log(error);
+ res.json(400).send();
+}
+}
+
+
+   // Update selected item
+   export const  updateSong = async (req:any, res:any ) => {
+    const {id} = req.params
+    const  {items} = req.body
+    try {
+      const updatedItem = await Song.findByIdAndUpdate(id, items, { new: true });
+      if (!updatedItem) {
+        return res.json({sucesss:true, message: 'Item not found' });
+      }
+      console.log(updatedItem)
+      res.json({success:true, message:"Item updated successfully"});
+    } catch (error) {
+      res.json({ message: 'Server Error', error });
+    }
+  } 
+  

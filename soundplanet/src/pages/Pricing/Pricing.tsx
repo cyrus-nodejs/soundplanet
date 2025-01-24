@@ -6,7 +6,7 @@ import { RefAttributes, useEffect } from "react"
 import NavSearchResults from "../../components/NavBar/NavSearch/NavSearchResults"
 import { PRICE} from "../../utils/@types"
 import { Link } from "react-router-dom"
-import { getIsAuthenticated, getUpdateUser } from "../../redux/features/auth/authSlice"
+import { getIsAuthenticated, getAuthUser } from "../../redux/features/auth/authSlice"
 import {fetchSub, fetchPayment, fetchPrice, getPackageList, getCurrentSub } from "../../redux/features/checkout/checkoutSlice"
 import { useAppDispatch, useAppSelector } from "../../redux/app/hook"
 import { getSearchTerm } from "../../redux/features/audio/audioSlice"
@@ -18,7 +18,7 @@ const Pricing = () => {
   const packages = useAppSelector(getPackageList)
   const searchterm = useAppSelector(getSearchTerm)
   const isauthenticated = useAppSelector(getIsAuthenticated)
-  const user = useAppSelector(getUpdateUser)
+  const user = useAppSelector(getAuthUser)
   
   useEffect(() => {
      
@@ -109,43 +109,43 @@ console.log(currentSub)
         </thead>
         <tbody className="">
           <tr>
-            <th scope="row" className="text-start">Playlist</th>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
+            <th scope="row" className="text-start text-light ">Playlist</th>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
           </tr>
           <tr>
             <th scope="row" className="text-start">Download</th>
             <td></td>
-            <td><i className='bx bx-check text-dark bx-md'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check text-light bx-md'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
         </tbody>
 
         <tbody>
           <tr>
             <th scope="row" className="text-start">Permissions</th>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
             <th scope="row" className="text-start">Sharing</th>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
             <th scope="row" className="text-start">Family Plan</th>
             <td></td>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
             <th scope="row" className="text-start">Extra</th>
             <td></td>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
         </tbody>
       </table>
@@ -158,7 +158,7 @@ console.log(currentSub)
             <div  className="col ">
             <div className="card mb-4  rounded-3 shadow-sm">
               <div className="card-header pricingbg py-3">
-                <h4 className="my-0  fw-normal">{item.plan}</h4>
+                <h4 className="my-0 text-light  fw-normal">{item.plan}</h4>
               </div>
               <div className="card-body pricingbg ">
                 <h1 className="card-title text-light pricing-card-title">${item.price}<small className=" text-light fw-light">/mo</small></h1>
@@ -187,8 +187,8 @@ console.log(currentSub)
 
     <h2 className="display-6 text-center mb-4">Compare plans</h2>
 
-    <div className="table-responsive">
-      <table className="table table-hover table-secondary text-center">
+    <div className="table-responsive ">
+      <table className="table  table-hover table-secondary text-center">
         <thead>
           <tr>
             <th style={{width:' 34%'}}></th>
@@ -199,43 +199,43 @@ console.log(currentSub)
         </thead>
         <tbody className="">
           <tr>
-            <th scope="row" className="text-start">Playlist</th>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
-            <td><i className='bx text-dark bx-check bx-md'></i></td>
+            <th scope="row" className="text-start text-light">Playlist</th>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
+            <td><i className='bx text-light bx-check bx-md'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start">Download</th>
+            <th scope="row" className="text-start text-light">Download</th>
             <td></td>
-            <td><i className='bx bx-check text-dark bx-md'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check text-light bx-md'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
         </tbody>
 
         <tbody>
           <tr>
-            <th scope="row" className="text-start">Permissions</th>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <th scope="row" className="text-start text-light">Permissions</th>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start">Sharing</th>
+            <th scope="row" className="text-start text-light">Sharing</th>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start">Family Plan</th>
+            <th scope="row" className="text-start text-light">Family Plan</th>
             <td></td>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
           <tr>
-            <th scope="row" className="text-start">Extra</th>
+            <th scope="row" className="text-start text-light">Extra</th>
             <td></td>
             <td></td>
-            <td><i className='bx bx-check bx-md text-dark'></i></td>
+            <td><i className='bx bx-check bx-md text-light'></i></td>
           </tr>
         </tbody>
       </table>

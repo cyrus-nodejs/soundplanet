@@ -1,5 +1,6 @@
 import { Pricing } from "../models/Pricing";
 
+// retrieve pricing plans
 export const  getPrice = async (req:any, res:any ) => {
     // await Song.find().sort({date:-1}).then(songs => res.json(songs)).catch(err => res.json("Error : " + err));
     try{
@@ -16,8 +17,8 @@ export const  getPrice = async (req:any, res:any ) => {
 
 }
 
-
- export  const postPrice = async  (req:any, res:any ) => {
+// add pricing plans to database
+ export  const addPrice = async  (req:any, res:any ) => {
 
    
 const {price,  plan, duration, active } = req.body

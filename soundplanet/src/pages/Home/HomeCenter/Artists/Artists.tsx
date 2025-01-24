@@ -31,7 +31,7 @@ const Artists = () => {
            <div className="d-flex mb-3">
            <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Artists</div>
     
-    <div className="ms-auto p-2"><Link to="/allartists" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto p-2"><Link to="/allartists" className="text-decoration-none d-none d-lg-block text-light">Show all</Link>  </div>
   </div>
             <div className="row    ">
        {artists?.slice(0, 5).map((track:ARTIST) =>{

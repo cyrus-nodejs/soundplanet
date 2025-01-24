@@ -8,9 +8,9 @@ import Audioplayer from "../../components/Player/Audioplayer"
 const Index = () => {
   
   return (
-  <Container fluid className="">
+  <Container fluid className="smContainer ">
 <NavIndex />
-    <div className="row mt-5 ">
+    <div className=" row smcenter ">
         <HomeLeft />
       <Center />  
         <HomeRight />

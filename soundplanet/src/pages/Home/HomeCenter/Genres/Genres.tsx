@@ -36,7 +36,7 @@ const Genres = () => {
 <div className="d-flex mb-3">
 <div className="d-inline-flex my-3 fs-4 border-info text-light  border-bottom">Genres</div>
     
-    <div className="ms-auto p-2"><Link to="/allgenres" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto d-none d-lg-block p-2"><Link to="/allgenres" className="text-decoration-none text-light">Show all</Link>  </div>
   </div>
           
         

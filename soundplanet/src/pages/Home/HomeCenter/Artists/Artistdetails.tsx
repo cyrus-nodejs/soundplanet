@@ -46,12 +46,17 @@ const Artistdetails = () => {
  
 
   return (
-    <Container fluid>
+    <Container className="vh-100 overflow-hidden" fluid>
     <NavIndex />
-        <div className="row homeRight  mt-5">
+        <div className="row vh-100 overflow-hidden homeRight  mt-5">
             <HomeLeft />
-            <Row  className='mt-3 py-3 artistbg mx-1 my-2 homeCenter  col' >
-        {searchterm ? (<NavSearchResults />) : (  <div>
+     
+            <div  className='mt-5  pb-5   mt-3 rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 homeCenter  col' >
+   
+      <div  className=" pb-5    mt-3 rounded  mt-3 rounded     text-light ">
+      <Row className=" pb-5">
+    
+        {searchterm ? (<NavSearchResults />) : (  <div className="" >
            
            <div className="artistbg" >
         <div className="d-flex align-items-center">
@@ -60,7 +65,7 @@ const Artistdetails = () => {
   </div>
   <div className="flex-grow-1 ms-3">
   <div className="d-flex flex-column mb-3">
-  <div className="p-2 text-start">Playlist</div>
+
   <div className="p-2 fs-3 fw-bold">Artist Mix</div>
   <div className="p-2">{currentArtist[0]?.artistname}</div>
   <div className="p-2">SoundPlanet {artistTrack.length} songs </div>
@@ -69,14 +74,14 @@ const Artistdetails = () => {
 </div>
     </div>
     <div className="d-flex mb-3">
-  <div className="p-2"><i onClick={() => dispatch(playAllTracks(artistTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-lg' ></i></div>
-  <div className="p-2"><i className='bx bx-plus mt-3 border text-success border-success bx-border-circle bx-sm'></i></div>
+  <div className="p-2"><i onClick={() => dispatch(playAllTracks(artistTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-md' ></i></div>
+  <div className="p-2"><i className='bx bx-plus mt-2 border text-success border-success bx-border-circle bx-sm'></i></div>
   <div className="ms-auto p-2"><i className='bx bx-menu mt-3 border text-success border-success'></i></div>
 </div>
 <ContextMenu.Root>
 <ContextMenu.Trigger className="ContextMenuTrigger">
-  <div className="pb-5">
-    <Table  className="  table-dark table-hover  table-dark  table-active  table-hover mt-1" responsive   >
+  <div className=" pb-5">
+    <Table  className="table col pb-5     mt-5 rounded     text-light   table-dark table-hover bg-info" responsive   >
       <thead>
         <tr>
         <th>#</th>
@@ -216,7 +221,10 @@ null
         
          
        
-</Row>
+        </Row>
+         </div>
+       
+</div>
             <HomeRight />
     </div>
     <Audioplayer />

@@ -47,6 +47,7 @@ export interface IMAGE {
 
 
   export interface ORDER {
+    _id:string
     owner:string;
     bill:number;
     paymentid:string;
@@ -110,7 +111,8 @@ export interface USER {
     username: string,
     firstname: string,
     lastname: string,
-    register_date: string
+    register_date: string,
+    role:string,
     __v: number
   }
   

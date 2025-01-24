@@ -2,6 +2,8 @@
 
 import { Song } from "../models/Song"
 import { Played } from "../models/Played"
+
+// save played song to database
 export  const addPlayedSongs = async (req:any, res:any ) => {
   const owner = req.user.id
     const {itemId} = req.body
@@ -42,11 +44,11 @@ console.log(err)
 }
 }
 
-
+//Retrieve played songs from database
 
 export const getPlayedSongs = async (req:any, res:any ) => {
            
-    const owner  = req.user.id
+    const owner  = req.user?.id
 
     try{
       console.log(owner)

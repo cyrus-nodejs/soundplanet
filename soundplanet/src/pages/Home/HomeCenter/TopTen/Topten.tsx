@@ -37,7 +37,7 @@ const HandleSelect = (e:Event) =>{
    
 
       
-       
+       console.log(Topten)
     
      
    
@@ -56,14 +56,14 @@ useEffect(() =>{
     
            
            
-      <Row  className='mt-3' >
+      <Row  className='vh-100' >
          {Topten ? (
           <div>
      
-           <div className="d-flex mb-3">
+           <div className="d-flex ">
 
            <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Top Ten</div>
-    <div className="ms-auto p-2"><Link to="/topten" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto p-2 d-none d-lg-block"><Link to="/topten" className="text-decoration-none text-light">Show all</Link>  </div>
   </div>
         
             <div className="row   ">

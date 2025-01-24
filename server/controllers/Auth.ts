@@ -4,10 +4,12 @@ import 'dotenv/config'
 import jwt from 'jsonwebtoken'
 import {User} from  '../models/User'
 import passport from "../middlewares/passport/index"
-import {createSecretToken, facebookToken, forgotPasswordToken} from "../middlewares/jwt/createSecretToken"
+import {createSecretToken,  forgotPasswordToken} from "../middlewares/jwt/createSecretToken"
 import {contactEmail} from "../utils/nodemailer"
 import {getUserByFacebookIdAndAccessToken} from "../utils/helpers"
 
+
+//Sign up and save user to database
 export const Register = async  (req:any, res:any, next:NextFunction) => {
     try{ 
         User.register(new User({ email: req.body.email, username:req.body.email, firstname:req.body.firstname, lastname:req.body.lastname }), req.body.password, function (err: string, user: any) { 
@@ -22,7 +24,7 @@ export const Register = async  (req:any, res:any, next:NextFunction) => {
                     } 
                     else { 
                         console.log(req.user)
-                        res.json({ success: true, message: "Sign Up Success!" }); 
+                        res.json({ success: true, message: "Sign up Success! Proceed to Login page!" }); 
                         // res.json({ success: true, message: "Your account has been saved" }); 
                     } 
                 }); 
@@ -35,7 +37,7 @@ export const Register = async  (req:any, res:any, next:NextFunction) => {
 
 }
 
-
+//authenticate user
 export const Login = async (req:any, res:any ) => {
     try {
        
@@ -55,21 +57,14 @@ export const Login = async (req:any, res:any ) => {
                     req.login(user, function(err: any){ 
                       if(err){ 
                         res.json({success: false, message: err}) 
-                      }else{ 
-                    console.log(req.user)
-                    const token = createSecretToken(user._id);
-                   
-                     res.cookie("token", token, {
-                           withCredentials: true,
-                         secure: true,
-                         sameSite: "none",
-                         httponly:"true",
-                       });
-                       console.log(req.user)
-                       console.log(token)
-                       
-                         res.json({success:true, message:"Authentication successful", user:req.user }); 
-                      } 
+                      }
+                    const soundToken = createSecretToken(user);
+                      console.log(`${soundToken} created`)
+                     res.cookie("soundToken", soundToken, {
+                      withCredentials: true,httpOnly:false
+                       })
+                         res.json({success:true, message:"Login successful!", user:user }); 
+                      
                     }) 
                   } 
                  } 
@@ -87,7 +82,7 @@ export const Login = async (req:any, res:any ) => {
 }
 
 
-
+//Create forgot password token 
 export const ForgotPassword = async (req:any, res:any ) => {
   try {
     const email = req.body.email;
@@ -151,6 +146,7 @@ export const ForgotPassword = async (req:any, res:any ) => {
  
 // }
 
+//Reset and change password
 export const ResetPassword = async (req:any, res:any  ) => {
   const {token, password} = req.body
   console.log(token, password)
@@ -192,7 +188,16 @@ export const ResetPassword = async (req:any, res:any  ) => {
  
 }
 
+//get authorised User
+export const  getAuthUser = async (req:any,  res:any) => {
+  if (!req.user){
+   return res.json({ success: false, message:`No User Found`})
+  }
+   res.json({ success: true, message:`Welcome ${req.user.firstname}`, user: req.user })
 
+  }
+  
+  //Logout
 export const Logout = async (req:any, res:any   ) => {
     if (req.user) {
          req.logout(function() {
@@ -207,77 +212,33 @@ export const Logout = async (req:any, res:any   ) => {
     
 }
 
-export const  facebookAuth = async (req:any, res:any) => {
-  passport.authenticate('facebook')
-}
-
-export const  facebookRedirect = async (req:any, res:any) => {
-  passport.authenticate("google", {
-    successRedirect: 'http://localhost:5173', 
-    failureRedirect: "facebook/login/failed"
-  })
- 
-}
-export const  facebookAuthSuccess = async (req:any, res:any) => {
-  const user = req.user
-  console.log(req.user) 
-  return res.json({ success: true, message: "successfull", user: req.user})
- 
-}
-
-export const  facebookAuthFailure = async (req:any, res:any) => {
-  return res.json({success: false, message: "failure"})
-}
-
+// Google OAuth route
 export const  googleAuth = async (req:any, res:any) => {
-  passport.authenticate("google",  function (err: any, user: any, info: any) { 
-    if(err){ 
-      res.json({success: false, message: err}) 
-    } else{ 
-     if (! user) { 
-       res.json({success: false, message: 'username not registered' }) 
-     } else{ 
-       req.login(user, function(err: any){ 
-         if(err){ 
-           res.json({success: false, message: err}) 
-         }else{ 
-       console.log(req.user)
-       const token = createSecretToken(user._id);
-      
-        res.cookie("token", token, {
-            withCredentials: true,
-            secure: true,
-            
-          });
-          console.log(req.user)
-          console.log(token)
-          res.json({success:true, message:"Authentication successful", user:req.user }); 
-         } 
-       })(req, res);
-     } 
-    } 
- })
-  
-}
-
-export const  googleAuthCallback = async (req:any, res:any) => {
-  passport.authenticate("google", {
-    successRedirect: 'http://localhost:5173', 
-    failureRedirect: "http://localhost:5173/login"
+  passport.authenticate('google', {
+    scope: ['profile', 'email']
   })
- 
 }
 
-export const  googleAuthSuccess = async (req:any, res:any) => {
-  const user = req.user
-  console.log(req.user) 
-  return res.json({ success: true, message: "successfully", user: req.user})
- 
+// Google OAuth callback route
+export const  googleAuthCallback = async (req:any, res:any) => {
+  passport.authenticate('google', { failureRedirect: '/' }),
+  (req:any, res:any) => {
+    // Redirect to a secure route after successful login
+    res.redirect('/getgoogleuser');
+  }
 }
 
-export const  googleAuthFailure = async (req:any, res:any) => {
-  return res.json({success: false, message: "failure"})
+export const  getGoogleUser = async (req:any, res:any) => {
+  if (!req.isAuthenticated()) {
+    return res.json({ success: false, message:`No User Found`})
+  }
+  // Send user profile data
+  res.json({ success: true, message:`Welcome ${req.user.firstname}`, user: req.user })
 }
+
+
+
+
 
 
 

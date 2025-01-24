@@ -21,9 +21,9 @@ const dispatch = useAppDispatch()
    const isplaying = useAppSelector(getIsPlaying)
     const isShuffle = useAppSelector(getIsShuffle)
     const isRepeat = useAppSelector(getIsRepeat)
-    console.log(isShuffle)
-  //  const [isShuffle, setIsShuffle] = useState<boolean>(false);
-  //  const [isRepeat, setIsRepeat] = useState<boolean>(false);
+
+
+
 
   const {audioRef, duration, setTimeProgress, progressBarRef,volume, mutevolume
     } = useContext(AudioPlayerContext)

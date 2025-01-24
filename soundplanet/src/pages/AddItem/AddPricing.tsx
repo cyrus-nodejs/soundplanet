@@ -1,11 +1,12 @@
 
 import { useEffect, useState} from 'react';
-import axios from "axios";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { useAppDispatch } from '../../../redux/app/hook';
+import { fetchAddPrice } from '../../../redux/features/admin/adminSlice';
 
 const AddPricing = () => {
-
+const dispatch = useAppDispatch()
 
       
   const [plan, setPlan] = useState("")
@@ -46,21 +47,11 @@ const AddPricing = () => {
    
     setLoading(true)
    
-   
+   const data = {price, plan, duration, active}
       
-       
-    axios.post("http://localhost:3000/addpricing",  
-  {
-    plan,
-    price,
-    duration,
-    active,
-  },
-  
-  {withCredentials:true} )
-    .then(response => {
-      alert(response.data.message)
-      alert(response.statusText)
+dispatch(fetchAddPrice(data)).then(response => {
+      alert(response)
+      alert(response)
       alert("Item saved successfully!")
     })
     .catch(err =>{

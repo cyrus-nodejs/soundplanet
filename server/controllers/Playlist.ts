@@ -1,6 +1,7 @@
 import { Song } from "../models/Song";
 import { Playlist } from "../models/Playlist";
 
+//Retrieve playlist from database
 export const getPlaylist = async (req:any, res: any) =>{
     const owner  = req.user?.id
     try{
@@ -19,6 +20,7 @@ export const getPlaylist = async (req:any, res: any) =>{
     }
 }
 
+// Retrieve selected  playlist
 export const getCurrentPlaylist = async (req:any, res:any ) => {
   const owner  = req.user?.id
 console.log(req.params.id)
@@ -40,7 +42,7 @@ catch(err){
   
   }
 
-
+// create new playlist
 export const createPlaylist = async  (req:any, res:any) => {
     const {title}= req.body
     console.log(title)
@@ -67,6 +69,7 @@ console.log(err)
 
 }
 
+// change selected playlist name
 export const updatePlaylistTitle = async (req:any, res:any ) => {
   const owner = req.user.id
   const {title, playlistId}= req.body
@@ -91,7 +94,7 @@ const filter = {owner: owner, _id:playlistId }
 }
 }
 
-
+// add songs to selected playlist
 export const addToPlaylist = async (req:any, res:any ) => {
     const owner = req.user.id
     const {itemId, playlistId}= req.body
@@ -120,7 +123,7 @@ try{
  
 }
 }
-
+// Remove song from selected playlist
 export const deleteFromPlaylist = async (req:any, res:any ) => {
  const owner = req.user.id
      const {itemId, playlistId}= req.body
@@ -141,6 +144,8 @@ if (itemIndex > -1) {
     res.status(400).send();
  }
 }
+
+// Empty selected playlist
 export const clearPlaylist = async (req:any, res:any ) => {
   const {playlistId} = req.body
   const owner = req.user.id
@@ -161,7 +166,7 @@ try{
 }
  }
  
-
+// delete selected playlist
 export const deletePlaylist = async (req:any, res:any ) => {
   const {playlistId} = req.body
   const owner = req.user.id

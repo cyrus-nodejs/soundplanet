@@ -18,6 +18,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET!, {
     typescript: true,
   });
 
+  //Retriev current Order
   export const getCurrentOrder = async (req:any, res:any ) => {
     const owner  = req.user?.id
 
@@ -40,7 +41,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET!, {
 
 
 
-
+//Create Stripe payment intent
     
 export const createPayment = async (req:any, res: any) => {
     const owner  = req.user.id
@@ -71,7 +72,7 @@ if (owner){
         res.json({success:true, message:"Payment intent created!", clientSecret: paymentIntent.client_secret})
     }
 }else{
-    res.json({sucess:false, message:"No user found"})
+    res.json({sucess:false, message:"No Cannot find user!"})
 }
 }catch (err){
 console.log(err)
@@ -79,7 +80,7 @@ res.json({success:false, message:"Something went wrong"})
 }
 }
 
-
+//Recover uncomfirmded payment
 export const retrievePayment = async (req:any, res:any ) => {
     const user  = req.user.id
     const {orderId} = req.body
@@ -102,6 +103,7 @@ res.json({success:false, message:"Something went wrong"})
 }
 }
 
+//send publishabe key to client
 export const config = async (req:any, res:any ) => {
     const publishableKey = process.env.STRIPE_PUBLISHABLE_KEY
     if(publishableKey) {

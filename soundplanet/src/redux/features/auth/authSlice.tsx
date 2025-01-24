@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 export interface AuthState {
-    updateUser: USER | null | undefined 
+    authUser: USER | null | undefined 
     isAuthenticated: boolean
     status:  'idle' | 'pending' | 'succeeded' | 'failed'
     error:string | null | undefined
@@ -16,7 +16,7 @@ export interface AuthState {
 
   // Define the initial value for the slice state
 const initialState: AuthState = {
-    updateUser: null,
+    authUser: null,
     isAuthenticated: false,
     message:"",
     status: 'idle' ,
@@ -31,7 +31,7 @@ const BASEURL = import.meta.env.VITE_APP_BASE_URL
 
 export const fetchAsyncUser = createAsyncThunk(
     'auth/fetchAsyncUser', async () => {
-        const response= await axios.post(`${BASEURL}`,{},{ withCredentials: true })
+        const response= await axios.post(`${BASEURL}`, {}, { withCredentials: true })
         console.log(response.data.user)
         return response.data.user
       });
@@ -45,9 +45,9 @@ export const fetchAsyncUser = createAsyncThunk(
           });
 
           export const fetchRegister = createAsyncThunk(
-            'auth/fetchRegister', async (data:{firstname:string, lastname:string, username:string, email:string, password:string}) => {
-           const   {firstname, lastname, email, username, password} = data
-                const response= await axios.post(`${BASEURL}/register`, {firstname, username,  lastname, email, password},{ withCredentials: true })
+            'auth/fetchRegister', async (data:{firstname:string, lastname:string, email:string, password:string}) => {
+           const   {firstname, lastname, email,  password} = data
+                const response= await axios.post(`${BASEURL}/register`, {firstname,   lastname, email, password},{ withCredentials: true })
                 console.log(response.data)
                 return response.data
               });
@@ -77,31 +77,16 @@ export const fetchAsyncUser = createAsyncThunk(
               });
             
 
-      export const fetchFacebookLogin = createAsyncThunk(
-      
-        'auth/fetchFacebookLogin',  async () => {
-            const result= await axios.get(`${BASEURL}/facebook/login/success`,{ withCredentials: true })
-            console.log(result.data)
-            return result.data
-          });
-          export const fetchFacebookAuth = createAsyncThunk(
-            'auth/fetchFacebookAuth', async () => {
-                const response= await axios.get(`${BASEURL}/login/facebook`,{ withCredentials: true })
-                console.log(response.data.user)
-                return response.data.user
-              });
-          export const fetchGoogleAuth = createAsyncThunk(
-            'auth/fetchGoogleAuth', async () => {
-                const response= await axios.get(`${BASEURL}/auth/google`,{ withCredentials: true })
-                console.log(response.data)
-                return response.data
-              });
-          export const fetchGoogleLogin = createAsyncThunk(
-            'auth/fetchGoogleLogin', async () => {
-                const response= await axios.get(`${BASEURL}/auth/login/success`,{ withCredentials: true })
-                console.log(response.data.user)
-                return response.data.user
-              });
+          export const fetchGoogleUser = createAsyncThunk(
+            // 'auth/fetchGoogleUser', async () => {
+            //   window.location.href = `${BASEURL}/auth/google`
+            //   }
+            'auth/fetchGoogleUser', async () => {
+              const response= await axios.get(`${BASEURL}/getgoogleuser`, { withCredentials: true })
+              console.log(response.data.user)
+              return response.data.user
+            }
+          );
 
          
 // Slices contain Redux reducer logic for updating state, and
@@ -120,7 +105,7 @@ export const authSlice = createSlice({
       
     })
     .addCase(fetchAsyncUser.fulfilled, (state, action) => {
-         state.updateUser= action.payload
+         state.authUser= action.payload
          state.isAuthenticated = true
         
       })
@@ -129,9 +114,23 @@ export const authSlice = createSlice({
         state.error = action.error.message;
         
       })
+      builder.addCase(fetchGoogleUser.pending, (state) => {
+        state.status = 'pending'
+        
+      })
+      .addCase(fetchGoogleUser.fulfilled, (state, action) => {
+           state.authUser= action.payload
+           state.isAuthenticated = true
+          
+        })
+        .addCase(fetchGoogleUser.rejected, (state, action) => {
+          state.status = 'failed'
+          state.error = action.error.message;
+          
+        })
       .addCase(fetchAsyncLogout.pending, (state) => {
       state.status = 'pending'
-      state.updateUser= null
+      state.authUser= null
       
       })
       .addCase(fetchAsyncLogout.fulfilled, (state) => {
@@ -146,7 +145,7 @@ export const authSlice = createSlice({
         })
         .addCase(fetchLogin.fulfilled, (state, action) => {
           state.isAuthenticated = true
-          state.updateUser = action.payload.user
+          state.authUser = action.payload.user
           state.message= action.payload.message
           
         })
@@ -166,34 +165,8 @@ export const authSlice = createSlice({
         state.status = 'failed'
         state.error = action.error.message;
       })
-      .addCase(fetchGoogleLogin.pending, (state) => {
-        state.status = 'pending'
-        })
-        .addCase(fetchGoogleLogin.fulfilled, (state, action) => {
-          state.status = 'succeeded'
-          state.isAuthenticated = true
-          state.updateUser = action.payload.user
-          state.message = action.payload.message
-        })
-        .addCase(fetchGoogleLogin.rejected, (state, action) => {
-          state.status = 'failed'
-          state.error = action.error.message;
-          
-          
-        })
-        .addCase(fetchGoogleAuth.pending, (state) => {
-          state.status = 'pending'
-          })
-          .addCase(fetchGoogleAuth.fulfilled, (state, action) => {
-            state.status = 'succeeded'
-            state.isAuthenticated = true
-            state.updateUser = action.payload
-          })
-          .addCase(fetchGoogleAuth.rejected, (state, action) => {
-            state.status = 'failed'
-            state.error = action.error.message;
-            
-          })
+      
+     
       .addCase(fetchForgotPassword.pending, (state) => {
         state.status = 'pending'
         
@@ -225,7 +198,7 @@ export const authSlice = createSlice({
 })
 
 // Export the generated action creators for use in components
-export const getUpdateUser = (state:RootState) => state.auth.updateUser
+export const getAuthUser = (state:RootState) => state.auth.authUser
 export const getIsAuthenticated = (state:RootState) => state.auth.isAuthenticated
 export const getAuthError = (state:RootState) => state.auth.error
 export const getAuthStatus = (state:RootState) => state.auth.status

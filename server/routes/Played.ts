@@ -1,13 +1,13 @@
 
 import express from "express"
 import {addPlayedSongs, getPlayedSongs } from "../controllers/Played";
- 
+ import { authenticateJWT } from "../middlewares/jwt/verifyToken";
 
 const router = express.Router();
 
 
-router.get("/getplayed", getPlayedSongs);
-router.post("/addplayed",  addPlayedSongs);
+router.get("/getplayed", authenticateJWT, getPlayedSongs);
+router.post("/addplayed", authenticateJWT, addPlayedSongs);
 
 
 

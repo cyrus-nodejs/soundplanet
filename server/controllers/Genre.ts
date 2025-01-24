@@ -2,7 +2,7 @@ import { Genre } from "../models/Genre";
 import {uploadToCloudinary } from "../utils/cloudinary"
 
 
-
+//Retrieve all genres from database
 export const  getGenre = async (req:any, res:any ) => {
     // await Song.find().sort({date:-1}).then(songs => res.json(songs)).catch(err => res.json("Error : " + err));
     try{
@@ -20,7 +20,8 @@ export const  getGenre = async (req:any, res:any ) => {
 }
 
 
- export  const postGenre = async  (req:any, res:any ) => {
+//Save new genre to databse
+ export  const addGenre = async  (req:any, res:any ) => {
 
     // const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 const { title } = req.body

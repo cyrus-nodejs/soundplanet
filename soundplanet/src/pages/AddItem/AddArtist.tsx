@@ -1,14 +1,11 @@
 
 import { useEffect, useState} from 'react';
-import axios from "axios";
+
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
-
-
+import { useAppDispatch } from '../../../src/redux/app/hook';
+import { fetchAddArtist } from '../../../src/redux/features/admin/adminSlice';
 const AddArtist = () => {
-
-
-
-
+const dispatch = useAppDispatch()
     const [state, setState] = useState({
      artistname:"",
        biography:"",
@@ -69,11 +66,9 @@ setState({...state, [e.target.name] : e.target.value})
        
       
        
-    axios.post("http://localhost:3000/addartist",  
-  formData, {withCredentials:true} )
-    .then(response => {
-      alert(response.data.message)
-      alert(response.statusText)
+dispatch(fetchAddArtist(formData)).then(response => {
+      alert(response)
+      alert(response)
       alert("Item saved successfully!")
     })
     .catch(err =>{

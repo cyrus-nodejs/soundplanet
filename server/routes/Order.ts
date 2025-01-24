@@ -2,17 +2,17 @@
 import express from "express"
 import {getCurrentOrder,  createPayment, config, retrievePayment } from "../controllers/Order";
 import { confirmPayment, getcurrentSub } from "../controllers/Subscription";
-
+import { authenticateJWT } from "../middlewares/jwt/verifyToken";
 const router = express.Router();
 
-router.get("/config", config);
-router.get("/retrievepayment",  retrievePayment)
-router.get("/currentorder",  getCurrentOrder)
-router.get("/currentsub",  getcurrentSub)
+router.get("/config", authenticateJWT, config);
+router.get("/retrievepayment", authenticateJWT, retrievePayment)
+router.get("/currentorder", authenticateJWT,  getCurrentOrder)
+router.get("/currentsub", authenticateJWT,  getcurrentSub)
 
 
-router.post("/confirmpayment",  confirmPayment);
-router.post("/createpayment", createPayment);
+router.post("/confirmpayment", authenticateJWT,  confirmPayment);
+router.post("/createpayment", authenticateJWT, createPayment);
 
 
 

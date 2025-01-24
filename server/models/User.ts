@@ -8,10 +8,10 @@ import passportLocalMongoose from 'passport-local-mongoose';
 const UserSchema = new Schema({
     email:{
         type:String,
-       required:[true, "Please enter an email"],
         unique:true,
        lowercase:true,
     },  
+
      
     username:{
                  type:String,
@@ -22,20 +22,35 @@ const UserSchema = new Schema({
            },
            lastname:{
             type:String,
-          
        },
-       gender:{
-        type:String,
-      
-   },
+   
    age:{
     type:String,
   
+},
+googleId:{
+    type:String,
+},
+
+profilePicture:{
+    publicId:{
+        type: String,
+      
+    },
+    url: {
+        type: String,
+     
+    }
 },
 country:{
     type:String,
   
 },
+role:{
+    type:String,
+    enum: [ 'customer', 'premier','admin'],
+    default:'customer'
+   },
 
          token:{
                 type:String,

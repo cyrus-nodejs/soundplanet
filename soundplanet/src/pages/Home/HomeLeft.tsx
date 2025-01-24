@@ -1,14 +1,13 @@
 
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-import { OverlayTrigger, Overlay, Button,  Form,  TooltipProps } from "react-bootstrap";
+
+import { OverlayTrigger,Overlay,  Button,  Form,  TooltipProps } from "react-bootstrap";
 import "../../index.css"
 import { Link } from "react-router-dom";
 import { PLAYLIST } from "../../utils/@types";
 import { useEffect,useRef,  useState, RefAttributes } from "react";
 import {fetchUpdateTitle, handleOnInput, fetchPlaylist, getMessage, getPlaylist, fetchDeletePlaylist, fetchCreatePlaylist } from "../../redux/features/playlist/playlistSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/app/hook";
-import { getUpdateUser, getIsAuthenticated } from "../../redux/features/auth/authSlice";
+ import {getAuthUser, getIsAuthenticated } from "../../redux/features/auth/authSlice";
 import { JSX } from "react/jsx-runtime";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -21,8 +20,8 @@ const HomeLeft = () => {
   
   const dispatch = useAppDispatch()
 
-const updateUser = useAppSelector(getUpdateUser)
-const isauthenticated = useAppSelector(getIsAuthenticated)
+ const authUser = useAppSelector(getAuthUser)
+ const isauthenticated = useAppSelector(getIsAuthenticated)
 const Playlist = useAppSelector(getPlaylist)
 const message = useAppSelector(getMessage)
  const [title, setTitle]  = useState("")
@@ -34,10 +33,10 @@ e.preventDefault()
 }
 
 const showForm = () => {
-  setShow(true)
+  setShow((prev) => !prev)
 }
 const hideForm = () => {
-  setShow(false)
+  setShow((prev) => !prev)
 }
 
 useEffect(() => {
@@ -47,7 +46,7 @@ useEffect(() => {
 
 
 const renderTooltip1 = (props: JSX.IntrinsicAttributes & TooltipProps & RefAttributes<HTMLDivElement>) => (
-  <div id="button-tooltip " {...props}>
+  <div id="button-tooltip  " {...props}>
     Login to Create Playlist
   </div>
 );
@@ -97,18 +96,18 @@ const formik = useFormik({
   return (
 
     
-    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1 rounded  position-relative  text-light ">
+    <div  className="mt-3 d-none d-lg-block  homeleft col-2 me-1 rounded    text-light ">
     
 
     <div className="d-flex mb-3">
-    <div className="p-2">Your Library</div>
+    <div className="p-2 ">Your Library</div>
     
     
          <div  className="ms-auto  p-1  " >
         <Button size="sm" variant="" ref={target} onClick={() => setShow(!show)}>
         <i    className='bx text-light bx-plus bx-sm'></i>
       </Button>
-      <Overlay target={target.current} show={show} placement="bottom">
+       <Overlay target={target.current} show={show} placement="bottom">
         {({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           placement: _placement,
@@ -134,12 +133,12 @@ const formik = useFormik({
             }}
             
           >
-            {updateUser ?  (<Form className="p-1" onSubmit={formik.handleSubmit}>
+             {authUser && isauthenticated ?  (<Form className="p-1" onSubmit={formik.handleSubmit}>
           
   
           <div className="d-flex w-75">
         
-          <div className="">  <Form.Control type="text" className=" form-control  rounded-2   border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Create Playlist" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
+          <div className="">  <Form.Control type="text" className=" form-control  text-light  rounded-2   border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Create Playlist" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
           {formik.touched.title && formik.errors.title && (
                     <div className="error text-light">{formik.errors.title} </div>
                   )}
@@ -152,20 +151,20 @@ const formik = useFormik({
         
                        
         </Form>
-        ) : (<p>Login to Create Playlist</p>) }
+        ) : (<p className='text-light'>Login to Create Playlist</p>) } 
              
           </div>
         )}
-      </Overlay>
+      </Overlay> 
       </div>
         <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div>
       
   </div>
 
-  { updateUser && isauthenticated  ? (
+  { authUser && isauthenticated  ? (
   
     <div  className="">
-        {Playlist?.length > 0   ? ( <div>
+        {Playlist   ? ( <div>
           <div className="text-start">Playlist</div>
 {Playlist?.map((track:PLAYLIST, id:number) =>{
           return (
@@ -180,7 +179,7 @@ const formik = useFormik({
             <div className="flex-grow-1 rounded ms-3">
       <div key={id} className="d-flex flex-column ">
             <div className="">{track?.title}  </div>
-            <div className=" text-light">Playlist. {updateUser?.firstname.toUpperCase() } </div>
+            <div className=" text-light">Playlist. {authUser?.firstname.toUpperCase() } </div>
             </div>
        
        </div>
@@ -241,24 +240,27 @@ const formik = useFormik({
 
 </div>
 ) : (<div className=" rounded-3  flex-column mb-3">
-  <div className="p-2 fs-6  d-inline-flex">Create Your First Playlist</div>
-  <div className="p-2 d-inline-flex">It's is easy we will help you </div>
-  <div className="d-inline-flex">
-  <div className="d-flex ">
-  <div onClick={showForm} className={show ? ("p-2  me-1 bg-light text-dark  rounded-3 ") : ("p-2  me-1 bg-light text-dark  rounded-3 ") }>Create Playlist</div>
-  {message  &&  (<p className="text-warning" >{message}</p>)}
-  {show && ( <div className="d-flex ">
-    <Form onSubmit={formik.handleSubmit}>
-  <div className="">     <Form.Control size="lg"  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
+  <h6 className="mt-2 fs-6 text-light  d-inline-flex">Create Your First Playlist</h6>
+   <p className="p-2 d-inline-flex">It's is easy we will help you </p> 
+  <div className="d-flex flex-column mb-3">
+  <div className=" ">
+  <div onClick={showForm} className={show ? ("p-2 text-center me-1  text-light bg-success  rounded-3 ") : ("p-2  me-1 text-light text-center bg-success  rounded-3 ") }>Create New Playlist <i className='bx  bxs-playlist bx-sm'></i></div>
+
+  {show && ( <div className="mt-2 ">
+    <Form className='d-flex justify-content-evenly ' onSubmit={formik.handleSubmit}>
+  <div className="">     <Form.Control size="sm" className='text-light shadow-none'  required  value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}   name="title"   type="text" placeholder="title" />
       {formik.touched.title && formik.errors.title && (
             <div className="error ">{formik.errors.title} {message}</div>
             
           )}</div>
-  <div className="ms-1"     ><Button type="submit" className=""  disabled={submitting} variant="dark" >Save</Button></div></Form>
+  <div className="ms-1"     ><Button type="submit" size="sm" className=""  disabled={submitting} variant="dark" >Save</Button></div>
 
+  </Form>
+ 
 </div>)}
 
   </div>
+   <div className="p-2">{message  &&  (<p className="text-warning" >{message}</p>)}</div>
   </div>
 </div>)}
     
@@ -274,7 +276,7 @@ const formik = useFormik({
       delay={{ show: 250, hide: 400 }}
       overlay={renderTooltip1}
     >
-       <div  className="p-2 bg-light text-dark  rounded-3 d-inline-flex">Create Playlist</div>
+       <div  className="p-2 text-light bg-success rounded-3 d-inline-flex">Create Playlist</div>
     </OverlayTrigger>
           
         </div>
@@ -320,7 +322,7 @@ const formik = useFormik({
   
   <div className="d-flex ">
 
-  <div className="">  <Form.Control type="text" className="bg-dark  rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
+  <div className="">  <Form.Control type="text" className="bg-dark  className='text-light'   rounded-2  text-light border border-0  w-100 h-100  rounded-2  shadow-none " placeholder="Edit title" value={formik.values.title} onChange={formik.handleChange} onInput={() => dispatch(handleOnInput())}  name="title" />
   {formik.touched.title && formik.errors.title && (
             <div className="error text-light">{formik.errors.title} </div>
           )}

@@ -18,6 +18,7 @@ import playListRoutes from "../routes/Playlist"
 import songRoutes from "../routes/Song"
 import orderRoutes from "../routes/Order"
 import priceRoutes from "../routes/Pricing"
+import adminRoutes from '../routes/Admin'
 import path from 'path';
 
 
@@ -33,11 +34,12 @@ const app = express();
 app.use(cookieParser());
 app.use(compression())
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(express.json());
+
  app.use(morgan("common"));
 app.use(express.urlencoded({ extended: true }));
  app.use(bodyParser.json({ limit: "100mb"}));
  app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+ app.use(express.json());
 
  
 
@@ -46,16 +48,12 @@ const corsOptions = {
   origin: process.env!.FRONTEND_URL,
   credentials: true, 
   optionSuccessStatus: 200,
-  Headers: true,
-  exposedHeaders: 'Set-Cookie',
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
-  allowedHeaders: [
-    'Access-Control-Allow-Origin',
-    'Content-Type',
-    'Authorization'
-  ]
+ 
 }
-const cookieParams = {maxAge: 24 * 60 * 60 * 1000, httpOnly: true, sameSite: "none", secure: true };
+const cookieParams = {maxAge: 24 * 60 * 60 * 1000, 
+  // httpOnly: true, sameSite: "none", secure: true
+ };
 
 app.use(cors(corsOptions))
 app.set('trust proxy', 1) 
@@ -82,6 +80,7 @@ app.use("/", playedRoutes)
 app.use("/", playListRoutes)
 app.use("/", songRoutes)
 app.use("/", priceRoutes)
+app.use("/", adminRoutes)
 
 
 

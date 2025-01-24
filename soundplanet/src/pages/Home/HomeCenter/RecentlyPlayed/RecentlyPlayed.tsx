@@ -8,7 +8,7 @@ import * as ContextMenu from "@radix-ui/react-context-menu";
 import { Link } from "react-router-dom";
 
 import { useAppSelector } from "../../../../redux/app/hook";
-import { getUpdateUser } from "../../../../redux/features/auth/authSlice";
+import { getAuthUser } from "../../../../redux/features/auth/authSlice";
 import { getCurrentSub } from "../../../../redux/features/checkout/checkoutSlice";
 
 import { useAppDispatch } from "../../../../redux/app/hook";
@@ -19,7 +19,7 @@ const RecentlyPlayed = () => {
   const currentSub = useAppSelector(getCurrentSub)
   const RecentlyPlayed = useAppSelector(getRecentlyPlayed)
   const Playlist = useAppSelector(getPlaylist)
-  const user = useAppSelector(getUpdateUser)
+  const user = useAppSelector(getAuthUser)
 const [Show, setShow] = useState(false);
 const target = useRef(null);
 const dispatch = useAppDispatch()
@@ -60,7 +60,7 @@ let data;
            <div className="d-flex mb-3">
 
            <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">Recently Played</div>
-    <div className="ms-auto p-2"><Link to="/recentlyplayed" className="text-decoration-none text-light">Show all</Link>  </div>
+    <div className="ms-auto p-2 d-none d-lg-block"><Link to="/recentlyplayed" className="text-decoration-none text-light">Show all</Link>  </div>
   </div>
         
             <div className="row   ">

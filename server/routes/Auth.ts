@@ -2,35 +2,24 @@ import express from 'express';
 
 const router = express.Router();
 import {
-  facebookAuth, facebookRedirect, facebookAuthFailure, facebookAuthSuccess,
-  googleAuth,  googleAuthCallback, googleAuthFailure, googleAuthSuccess,
+  googleAuth,  googleAuthCallback, getGoogleUser,
   Register, Login, Logout, 
-  ForgotPassword, ResetPassword
+  ForgotPassword, ResetPassword, getAuthUser
  } from "../controllers/Auth";
-import {userVerification} from "../middlewares/jwt/verifyToken"
+import {authenticateJWT} from "../middlewares/jwt/verifyToken"
 
 
 
-
-router.get("/login/facebook", facebookAuth);
-router.get("/oauth2/redirect/facebook", facebookRedirect);
-router.get("/facebook/login/success", facebookAuthSuccess)
-router.get("/facebook/login/failure", facebookAuthFailure)
 
 
 
 
 router.get("/auth/google", googleAuth);
-router.get("/auth/google/soundplanet", googleAuthCallback);
-router.get("/auth/login/success", googleAuthSuccess)
-router.get("/auth/login/failure", googleAuthFailure)
+router.get("/auth/google/callback", googleAuthCallback);
+router.get("/getgoogleuser", getGoogleUser);
 
-
-  
-
-
-router.post('/',  userVerification  )
- router.post("/register", Register );
+router.post('/', getAuthUser   )
+router.post("/register", Register );
 router.post("/login", Login );
 router.post("/logout", Logout );
   router.post('/forgotpassword',  ForgotPassword )

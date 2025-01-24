@@ -1,14 +1,12 @@
 
 import express from "express"
-import {getPrice, postPrice } from "../controllers/Pricing";
- 
+import {getPrice } from "../controllers/Pricing";
+ import { authenticateJWT } from "../middlewares/jwt/verifyToken";
 
 const router = express.Router();
 
 
 router.get("/getprice", getPrice);
-router.post("/addpricing",  postPrice);
-
 
 
 

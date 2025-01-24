@@ -1,11 +1,12 @@
 
 import { useEffect, useState} from 'react';
-import axios from "axios";
-import { Form, Row, Col, Button, Container } from "react-bootstrap";
 
+import { Form, Row, Col, Button, Container } from "react-bootstrap";
+import { useAppDispatch } from '../../../redux/app/hook';
+import { fetchAddGenre } from '../../../redux/features/admin/adminSlice';
 
 const AddGenre = () => {
-
+  const dispatch = useAppDispatch()
 
 
 
@@ -61,11 +62,9 @@ setState({...state, [e.target.name] : e.target.value})
        
       
        
-    axios.post("http://localhost:3000/addgenre",  
-  formData, {withCredentials:true} )
-    .then(response => {
-      alert(response.data.message)
-      alert(response.statusText)
+    dispatch(fetchAddGenre(formData)).then(response => {
+      alert(response)
+      alert(response)
       alert("Item saved successfully!")
     })
     .catch(err =>{

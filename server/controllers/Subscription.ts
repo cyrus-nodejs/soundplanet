@@ -1,7 +1,8 @@
 import { Order } from "../models/Order"
 import { Subscription } from "../models/Subscription"
-
 import {daysRemaining} from "../utils/timecalculator"
+
+//Retrieve current subscription
 export const getcurrentSub = async (req:any, res:any ) => {
     const owner  = req.user?.id
 
@@ -23,13 +24,13 @@ export const getcurrentSub = async (req:any, res:any ) => {
 }
 
 
-
+// Confirm payment
 
 export const confirmPayment = async (req:any, res:any ) => {
     const owner = req.user.id
     const {paymentIntent} = req.body
     console.log(paymentIntent)
-    const order = await Order.findOne({owner}).sort({ _id: -1 }).limit(1)
+    const order = await Order.findOne({paymentid:paymentIntent.id})
     const d = new Date()
     d.setDate(d.getDate()+ 30);
     const expirytime = new Date(d)
@@ -39,8 +40,6 @@ export const confirmPayment = async (req:any, res:any ) => {
 
 try{
 if (order){
-
-    if (!paymentIntent) throw Error('Payment failed');
     if (paymentIntent.status == 'succeeded'){
         const subExists = await Subscription.findOne({paymentid:paymentIntent.id})
        if (subExists){
@@ -70,7 +69,7 @@ if (order){
         res.json({success:false, message:" Payment not validated!"})
     }
 }else{
-    res.json({sucess:false, message:"No cart exist"})
+    res.json({sucess:false, message:"No Order found!"})
 }
 }catch (err){
 console.log(err)

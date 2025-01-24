@@ -13,7 +13,7 @@ import * as ContextMenu from "@radix-ui/react-context-menu";
 
 import {getRecentlyPlayed, fetchAddToPlaylist,  getPlaylist } from "../../../../redux/features/playlist/playlistSlice";
 import { getCurrentSub } from "../../../../redux/features/checkout/checkoutSlice";
-import { getUpdateUser } from "../../../../redux/features/auth/authSlice";
+import { getAuthUser } from "../../../../redux/features/auth/authSlice";
 
 import { useAppDispatch, useAppSelector } from "../../../../redux/app/hook";
 import { playTrack, getSearchTerm } from "../../../../redux/features/audio/audioSlice";
@@ -25,7 +25,7 @@ import NavSearchResults from "../../../../components/NavBar/NavSearch/NavSearchR
 const AllRecentlyPlayed = () => {
   
   const RecentlyPlayed = useAppSelector(getRecentlyPlayed)
-  const user = useAppSelector(getUpdateUser)
+  const user = useAppSelector(getAuthUser)
   const searchterm = useAppSelector(getSearchTerm)
   
 

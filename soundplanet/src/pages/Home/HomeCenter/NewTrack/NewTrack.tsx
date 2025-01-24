@@ -61,7 +61,7 @@ useEffect(() =>{
       <div className="d-flex mb-3">
 
       <div className="d-inline-flex my-3 fs-4 border-info  border-bottom">New Track</div>
-<div className="ms-auto p-2"><Link to="/newtracks" className="text-decoration-none text-light">Show all</Link>  </div>
+<div className="ms-auto p-2 d-none d-lg-block"><Link to="/newtracks" className="text-decoration-none text-light">Show all</Link>  </div>
 </div>
    
        <div className="row   ">

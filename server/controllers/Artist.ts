@@ -2,8 +2,8 @@ import { Artist } from "../models/Artist";
 import {uploadToCloudinary } from "../utils/cloudinary"
 
 
+//Get all artists in database
 export const  getArtist = async (req:any, res:any ) => {
-    // await Song.find().sort({date:-1}).then(songs => res.json(songs)).catch(err => res.json("Error : " + err));
     try{
         const artists = await Artist.find().sort({ _id: -1 })
         if(artists ){
@@ -19,7 +19,8 @@ export const  getArtist = async (req:any, res:any ) => {
 }
 
 
- export  const postArtist = async  (req:any, res:any ) => {
+// Save  artist details to  database
+ export  const addArtist = async  (req:any, res:any ) => {
 
     // const files = req.files as { [fieldname: string]: Express.Multer.File[] };
 const { artistname,   biography,  tour , following   } = req.body

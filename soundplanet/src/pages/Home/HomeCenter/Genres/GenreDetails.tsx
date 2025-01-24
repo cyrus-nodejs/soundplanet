@@ -46,15 +46,18 @@ const Genredetails = () => {
   console.log(currentGenre)
 
   return (
-    <Container fluid>
+    <Container className="vh-100 overflow-hidden" fluid>
     <NavIndex />
-        <div className="row homeRight mt-5">
+        <div className="row vh-100 overflow-hidden   mt-5">
             <HomeLeft />
             
-            <Row  className='mt-3 pb-5 artistbg mx-1 my-2 homeCenter  col' >
-     {searchterm ? (<NavSearchResults />) : ( <div className="">
+            <div  className='mt-5  pb-5    rounded  mt-3 rounded   vh-100     text-light  artistbg mx-1 my-2 homeCenter  col' >
+   
+      <div  className=" pb-5    mt-3 rounded  mt-3 rounded     text-light ">
+      <Row className=" ">
+     {searchterm ? (<NavSearchResults />) : ( <div className="pb-5">
            
-           <div className="artistbg" >
+           <div className="artistbg " >
         <div className="d-flex align-items-center">
   <div className="flex-shrink-0">
     <Image src={currentGenre[0]?.genrebg.url} height="180" width="180" rounded/>
@@ -69,15 +72,15 @@ const Genredetails = () => {
 </div>
 </div>
 <div className="d-flex mb-3">
-  <div className="p-2"><i onClick={() => dispatch(playAllTracks(genreTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-lg' ></i></div>
-  <div className="p-2"><i className='bx bx-plus mt-3 border text-success border-success bx-border-circle bx-sm'></i></div>
+  <div className="p-2"><i onClick={() => dispatch(playAllTracks(genreTrack))} className='bx bx-play text-success border border-success  bx-border-circle bx-md' ></i></div>
+  <div className="p-2"><i className='bx bx-plus mt-2 border text-success border-success bx-border-circle bx-sm'></i></div>
   <div className="ms-auto p-2"><i className='bx bx-menu mt-3 border text-success border-success'></i></div>
 </div>
     </div>
     <ContextMenu.Root>
     <ContextMenu.Trigger className="ContextMenuTrigger">
-    <div className="pb-3">
-    <Table  className="table table-dark table-hover bg-info" responsive   >
+    <div className="pb-5">
+    <Table  className="table col pb-5     mt-3 rounded     text-light   table-dark table-hover bg-info" responsive   >
       <thead>
         <tr>
         <th>#</th>
@@ -212,9 +215,10 @@ null
       
         </div>)}
          
-         
+         </Row>
+         </div>
        
-</Row>
+</div>
             <HomeRight />
     </div>
     <Audioplayer />
