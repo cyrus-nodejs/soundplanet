@@ -90,11 +90,11 @@ app.use(cors(corsOptions))
 app.set('trust proxy', 1)
 app.use(
 session({
-name:process.env.SESSION_NAME!,
+name:process.env.SESSION*NAME!,
 secret:process.env.SESSION_SECRET!, //pick a random string to make the hash that is generated secure
 store: MongoStore.create({mongoUrl:process.env.MONGO_URL }),
 cookie: {
-maxAge: 24 _ 60 _ 60 \* 1000,
+maxAge: 24 * 60 \_ 60 \* 1000,
 httpOnly: true, sameSite: "none", secure: true
 },
 saveUninitialized: false ,//required
@@ -169,19 +169,6 @@ npm install axios react-router-dom
 4. **Routing**: Use `react-router-dom` to manage routing between different pages like Home, Search, Profile, etc.
 
 ---
-
-### **Integrating Spotify API**
-
-- **Authentication with Spotify**: Use the Spotify Authorization Code Flow to authenticate users with their Spotify accounts (OAuth).
-- **API Endpoints**:
-  - `/v1/me`: Get user profile info.
-  - `/v1/me/top/artists`: Get top artists.
-  - `/v1/me/top/tracks`: Get top tracks.
-  - `/v1/albums/{id}/tracks`: Get tracks in a specific album.
-
-### **Sample Search API Call**:
-
-``
 
 ---
 
