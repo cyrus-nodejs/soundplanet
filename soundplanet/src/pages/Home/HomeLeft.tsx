@@ -1,4 +1,6 @@
 
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 
 import { OverlayTrigger,Overlay,  Button,  Form,  TooltipProps } from "react-bootstrap";
 import "../../index.css"
@@ -7,7 +9,7 @@ import { PLAYLIST } from "../../utils/@types";
 import { useEffect,useRef,  useState, RefAttributes } from "react";
 import {fetchUpdateTitle, handleOnInput, fetchPlaylist, getMessage, getPlaylist, fetchDeletePlaylist, fetchCreatePlaylist } from "../../redux/features/playlist/playlistSlice";
 import { useAppSelector, useAppDispatch } from "../../redux/app/hook";
- import {getAuthUser, getIsAuthenticated } from "../../redux/features/auth/authSlice";
+ import {getAuthUser, fetchAsyncUser, getIsAuthenticated } from "../../redux/features/auth/authSlice";
 import { JSX } from "react/jsx-runtime";
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
@@ -15,6 +17,7 @@ import * as Yup from 'yup';
 import * as ContextMenu from "@radix-ui/react-context-menu";
 
 const HomeLeft = () => {
+  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let data;
   
@@ -41,6 +44,10 @@ const hideForm = () => {
 
 useEffect(() => {
   dispatch(fetchPlaylist())
+}, [dispatch])
+ 
+useEffect(() => {
+  dispatch(fetchAsyncUser())
 }, [dispatch])
  
 

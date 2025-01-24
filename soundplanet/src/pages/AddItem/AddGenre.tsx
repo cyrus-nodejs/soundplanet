@@ -2,8 +2,8 @@
 import { useEffect, useState} from 'react';
 
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
-import { useAppDispatch } from '../../../redux/app/hook';
-import { fetchAddGenre } from '../../../redux/features/admin/adminSlice';
+import { useAppDispatch } from '../../../src/redux/app/hook';
+import { fetchAddGenre } from '../../../src/redux/features/admin/adminSlice';
 
 const AddGenre = () => {
   const dispatch = useAppDispatch()
