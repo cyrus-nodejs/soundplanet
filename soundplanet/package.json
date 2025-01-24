@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "proxy":"http://localhost:3000",
+    "proxy":"https://soundplanet.onrender.com",
     "lint": "eslint .",
     "preview": "vite preview"
   },

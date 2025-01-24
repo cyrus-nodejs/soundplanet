@@ -61,7 +61,11 @@ export const Login = async (req:any, res:any ) => {
                     const soundToken = createSecretToken(user);
                       console.log(`${soundToken} created`)
                      res.cookie("soundToken", soundToken, {
-                      withCredentials: true,httpOnly:false
+                      // withCredentials: true,httpOnly:false
+                      withCredentials: true,
+                      sameSite:"none",
+                        httpOnly:true,
+                        secure:true
                        })
                          res.json({success:true, message:"Login successful!", user:user }); 
                       

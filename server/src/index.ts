@@ -51,9 +51,7 @@ const corsOptions = {
   methods: ['GET', 'PUT', 'POST', 'DELETE'],
  
 }
-const cookieParams = {maxAge: 24 * 60 * 60 * 1000, 
-  // httpOnly: true, sameSite: "none", secure: true
- };
+
 
 app.use(cors(corsOptions))
 app.set('trust proxy', 1) 
@@ -62,7 +60,10 @@ app.set('trust proxy', 1)
     name:process.env.SESSION_NAME!,
 		secret:process.env.SESSION_SECRET!, //pick a random string to make the hash that is generated secure
 		store: MongoStore.create({mongoUrl:process.env.MONGO_URL }),
-     cookie: cookieParams,
+    cookie: {
+      maxAge: 24 * 60 * 60 * 1000, 
+       httpOnly: true, sameSite: "none", secure: true 
+   },
 		saveUninitialized: false ,//required
     resave: false, //required
    
