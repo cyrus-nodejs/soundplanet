@@ -5,13 +5,15 @@ Creating a Music App using the MERN stack (MongoDB, Express.js, React.js, and No
 ### **Music App Documentation**
 
 <<<<<<< HEAD
+
 #### **Project Overview**
+
 =======
 Link => https://soundplanet.netlify.app
 
-
 Music App-homepage
->>>>>>> 0e4a250b062f657b2d29a737d7037e47a891f869
+
+> > > > > > > 0e4a250b062f657b2d29a737d7037e47a891f869
 
 This app is a Spotify-like music streaming service that will allow users to stream music, create playlists, search for songs, and interact with the music. The backend will handle user authentication, song data management, and music streaming. The frontend will offer an interactive and user-friendly interface similar to Spotify's web application.
 
@@ -63,31 +65,79 @@ This app is a Spotify-like music streaming service that will allow users to stre
    Create an Express server and connect it to MongoDB.
 
    ```js
-   const express = require("express");
-   const mongoose = require("mongoose");
-   const cors = require("cors");
-   const dotenv = require("dotenv");
-
-   dotenv.config();
-
    const app = express();
-   app.use(express.json());
-   app.use(cors());
-
-   mongoose
-     .connect(process.env.MONGO_URI, {
-       useNewUrlParser: true,
-       useUnifiedTopology: true,
-     })
-     .then(() => console.log("MongoDB connected"))
-     .catch((err) => console.log(err));
-
-   app.listen(5000, () => console.log("Server running on port 5000"));
    ```
+
+app.use(cookieParser());
+app.use(compression())
+app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
+
+app.use(morgan("common"));
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json({ limit: "100mb"}));
+app.use(bodyParser.urlencoded({ limit: "100mb", extended: true }));
+app.use(express.json());
+
+const corsOptions = {
+origin: process.env!.FRONTEND_URL,
+credentials: true,
+optionSuccessStatus: 200,
+methods: ['GET', 'PUT', 'POST', 'DELETE'],
+
+}
+
+app.use(cors(corsOptions))
+app.set('trust proxy', 1)
+app.use(
+session({
+name:process.env.SESSION_NAME!,
+secret:process.env.SESSION_SECRET!, //pick a random string to make the hash that is generated secure
+store: MongoStore.create({mongoUrl:process.env.MONGO_URL }),
+cookie: {
+maxAge: 24 _ 60 _ 60 \* 1000,
+httpOnly: true, sameSite: "none", secure: true
+},
+saveUninitialized: false ,//required
+resave: false, //required
+
+    })
+
+)
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/", authRoutes );
+app.use("/", orderRoutes)
+app.use("/", playedRoutes)
+app.use("/", playListRoutes)
+app.use("/", songRoutes)
+app.use("/", priceRoutes)
+app.use("/", adminRoutes)
+
+const startServer = async () => {
+try{
+await connectDB(process.env.MONGO_URL);
+}catch (err){
+console.log(err)
+}
+
+}
+
+app.get("/", (req:Request, res:Response)=>{
+res.sendFile(path.join(\_\_dirname, '../../public/index.html'));
+})
+
+startServer();
+const server = app.listen(process.env.PORT, () => console.log(`Listening on port ${process.env.PORT}`))
+
+server.keepAliveTimeout = 110 _ 1000;
+server.headersTimeout = 120 _ 1000;
+
+````
 
 3. **Authentication Routes**:
 
-   - Create routes for login, registration, and JWT token generation.
+- Create routes for login, registration, and JWT token generation.
 
 4. **Music Routes**:
 
@@ -97,11 +147,11 @@ This app is a Spotify-like music streaming service that will allow users to stre
 
 1. **Create React App**:
 
-   ```bash
-   npx create-react-app spotify-clone
-   cd spotify-clone
-   npm install axios react-router-dom
-   ```
+```bash
+npx create-react-app spotify-clone
+cd spotify-clone
+npm install axios react-router-dom
+````
 
 2. **Components**:
 
