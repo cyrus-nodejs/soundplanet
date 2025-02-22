@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 
-import { OverlayTrigger,Overlay,  Button,  Form,  TooltipProps } from "react-bootstrap";
+import { OverlayTrigger,  Button,  Form,  TooltipProps } from "react-bootstrap";
 import "../../index.css"
 import { Link } from "react-router-dom";
 import { PLAYLIST } from "../../utils/@types";
@@ -38,9 +38,9 @@ e.preventDefault()
 const showForm = () => {
   setShow((prev) => !prev)
 }
-const hideForm = () => {
-  setShow((prev) => !prev)
-}
+// const hideForm = () => {
+//   setShow((prev) => !prev)
+// }
 
 useEffect(() => {
   dispatch(fetchPlaylist())
@@ -114,7 +114,7 @@ const formik = useFormik({
         <Button size="sm" variant="" ref={target} onClick={() => setShow(!show)}>
         <i    className='bx text-light bx-plus bx-sm'></i>
       </Button>
-       <Overlay target={target.current} show={show} placement="bottom">
+       {/* <Overlay target={target.current} show={show} placement="bottom">
         {({
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           placement: _placement,
@@ -162,7 +162,7 @@ const formik = useFormik({
              
           </div>
         )}
-      </Overlay> 
+      </Overlay>  */}
       </div>
         <div className="p-2"><i className='bx  bx-sm bx-right-arrow-alt'></i></div>
       
@@ -171,7 +171,7 @@ const formik = useFormik({
   { authUser && isauthenticated  ? (
   
     <div  className="">
-        {Playlist   ? ( <div>
+        {Playlist?.length > 0   ? ( <div>
           <div className="text-start">Playlist</div>
 {Playlist?.map((track:PLAYLIST, id:number) =>{
           return (

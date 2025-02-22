@@ -22,7 +22,7 @@ router.get("/allpremiers", authenticateJWT, verifyRole(['admin']),  AllPremiers)
 router.get("/allcustomers", authenticateJWT, verifyRole(['admin']), AllCustomers );
 router.get("/allorders", authenticateJWT, verifyRole(['admin']), AllOrders );
 
-//
+
 router.post("/admin/addsong", authenticateJWT,  verifyRole(['admin']), upload.fields([ { name: 'image', maxCount: 1 },{ name: 'songfile', maxCount: 1 }]) , addSong);
 router.post("/admin/addgenre", authenticateJWT,  verifyRole(['admin']), upload.fields([ { name: 'genrebg', maxCount: 1 }, ]) , addGenre);
 router.post("/admin/addartist", authenticateJWT,  verifyRole(['admin']), upload.fields([{ name: 'avatar', maxCount: 1 }]) , addArtist);
